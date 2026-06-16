@@ -1,0 +1,2073 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nakla — Репетиторы в Латвии</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#080E17;--bg2:#0D1520;--bg3:#121C2B;--bg4:#17243A;
+  --green:#3DDB82;--green2:#2cb96a;--glow:rgba(61,219,130,0.12);
+  --white:#EEF3FF;--muted:#7A8FA8;
+  --border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.13);
+  --red:#ff5c5c;
+}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--white);min-height:100vh;overflow-x:hidden;}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(61,219,130,0.4);}50%{box-shadow:0 0 0 10px rgba(61,219,130,0);}}
+@keyframes spin{to{transform:rotate(360deg);}}
+@keyframes slideUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
+@keyframes scaleIn{from{opacity:0;transform:scale(0.9);}to{opacity:1;transform:scale(1);}}
+@keyframes shimmer{0%{background-position:-200% 0;}100%{background-position:200% 0;}}
+@keyframes countUp{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+@keyframes borderGlow{0%,100%{border-color:rgba(61,219,130,0.2);}50%{border-color:rgba(61,219,130,0.5);}}
+
+.page{display:none;}
+.page.active{display:block;animation:fadeIn 0.3s ease both;}
+
+/* ── NAV ── */
+nav{display:flex;align-items:center;padding:0 48px;height:64px;border-bottom:1px solid var(--border);background:rgba(8,14,23,0.95);backdrop-filter:blur(24px);position:sticky;top:0;z-index:300;}
+.logo{font-size:22px;font-weight:900;color:var(--white);cursor:pointer;flex-shrink:0;margin-right:40px;letter-spacing:-0.5px;}
+.logo span{color:var(--green);}
+.nav-links{display:flex;gap:2px;list-style:none;flex:1;}
+.nav-links a{color:var(--muted);font-size:14px;font-weight:500;padding:7px 13px;border-radius:8px;cursor:pointer;transition:color 0.18s,background 0.18s;white-space:nowrap;}
+.nav-links a:hover{color:var(--white);background:rgba(255,255,255,0.06);}
+.nav-links a.act{color:var(--green);background:rgba(61,219,130,0.08);}
+.nav-right{display:flex;align-items:center;gap:10px;margin-left:auto;flex-shrink:0;}
+.lang-sw{display:flex;gap:2px;background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:3px;}
+.lang-btn{background:none;border:none;color:var(--muted);font-family:inherit;font-size:12px;font-weight:700;padding:5px 9px;border-radius:7px;cursor:pointer;transition:all 0.18s;}
+.lang-btn.active{background:var(--green);color:#050d14;}
+.btn-ghost{background:none;border:1px solid var(--border2);color:var(--white);padding:8px 18px;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;transition:all 0.18s;white-space:nowrap;}
+.btn-ghost:hover{border-color:var(--green);background:var(--glow);}
+.btn-green{background:var(--green);border:none;color:#050d14;padding:8px 18px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;transition:all 0.18s;white-space:nowrap;}
+.btn-green:hover{background:#4fea92;transform:translateY(-1px);}
+
+/* ── SHARED ── */
+.tag{font-size:11px;font-weight:600;padding:4px 10px;border-radius:6px;}
+.tag-blue{background:rgba(74,130,230,0.15);color:#78aaff;}
+.tag-pink{background:rgba(230,74,130,0.15);color:#ff78aa;}
+.tag-yel{background:rgba(230,200,74,0.15);color:#ffdd78;}
+.tag-cyan{background:rgba(74,230,230,0.15);color:#78ffff;}
+.tag-pur{background:rgba(174,74,230,0.15);color:#d078ff;}
+.tag-ora{background:rgba(230,130,74,0.15);color:#ffa878;}
+.tag-grn{background:rgba(61,219,130,0.15);color:#3DDB82;}
+.tag-red{background:rgba(230,74,74,0.15);color:#ff8080;}
+
+/* ── FOOTER ── */
+footer{border-top:1px solid var(--border);padding:40px 48px;}
+.foot-inner{max-width:1160px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;}
+.foot-logo{font-size:17px;font-weight:900;}
+.foot-logo span{color:var(--green);}
+.foot-links{display:flex;gap:22px;list-style:none;flex-wrap:wrap;}
+.foot-links a{color:var(--muted);font-size:13px;cursor:pointer;transition:color 0.18s;}
+.foot-links a:hover{color:var(--white);}
+.foot-copy{font-size:12px;color:var(--muted);}
+
+/* ════════════ HOME ════════════ */
+.hero-wrap{padding:0 48px;position:relative;overflow:hidden;background:linear-gradient(180deg,rgba(13,21,32,0.6) 0%,transparent 100%);}
+.hero-bg-glow{position:absolute;width:800px;height:800px;border-radius:50%;background:radial-gradient(circle,rgba(61,219,130,0.055),transparent 65%);top:-200px;right:-150px;pointer-events:none;}
+.hero-bg-glow2{position:absolute;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(74,130,230,0.04),transparent 70%);bottom:-100px;left:0;pointer-events:none;}
+.hero{max-width:1160px;margin:0 auto;padding:92px 0 80px;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;}
+.hero-eye{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;color:var(--green);letter-spacing:1.2px;text-transform:uppercase;margin-bottom:20px;}
+.hero-dot{width:6px;height:6px;background:var(--green);border-radius:50%;animation:pulse 2s infinite;}
+.hero h1{font-size:58px;font-weight:900;line-height:1.03;letter-spacing:-2.8px;margin-bottom:22px;}
+.hero h1 .grad{background:linear-gradient(135deg,#EEF3FF 0%,#8BA8CC 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero h1 em{font-style:normal;background:linear-gradient(135deg,#3DDB82,#2ff0a0);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero-sub{font-size:17px;color:var(--muted);line-height:1.7;margin-bottom:36px;max-width:420px;}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:44px;}
+.btn-hero{background:var(--green);border:none;color:#050d14;padding:14px 28px;border-radius:13px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;transition:all 0.2s;}
+.btn-hero:hover{background:#4fea92;transform:translateY(-2px);box-shadow:0 10px 36px rgba(61,219,130,0.28);}
+.btn-outline{background:none;border:1px solid var(--border2);color:var(--white);padding:14px 28px;border-radius:13px;font-size:15px;cursor:pointer;font-family:inherit;transition:all 0.2s;}
+.btn-outline:hover{border-color:rgba(255,255,255,0.3);background:rgba(255,255,255,0.04);}
+.hero-stats{display:flex;gap:32px;padding-top:36px;border-top:1px solid var(--border);}
+.stat-num{font-size:27px;font-weight:900;letter-spacing:-1px;}
+.stat-lbl{font-size:12px;color:var(--muted);margin-top:3px;}
+.hero-visual{position:relative;animation:float 6s ease-in-out infinite;}
+.float-pill{position:absolute;background:var(--bg4);border:1px solid rgba(61,219,130,0.4);border-radius:50px;padding:10px 18px;font-size:13px;font-weight:700;color:var(--green);white-space:nowrap;top:-20px;left:50%;transform:translateX(-50%);box-shadow:0 4px 24px rgba(0,0,0,0.5);z-index:2;}
+.hero-card{background:var(--bg3);border:1px solid var(--border2);border-radius:20px;padding:28px;position:relative;overflow:hidden;}
+.hero-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(61,219,130,0.6),transparent);}
+.card-av{width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#3DDB82,#2cb96a);display:flex;align-items:center;justify-content:center;font-size:19px;font-weight:800;color:#050d14;margin-bottom:14px;}
+.card-name{font-size:16px;font-weight:700;margin-bottom:3px;}
+.card-spec{font-size:13px;color:var(--muted);margin-bottom:14px;}
+.card-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px;}
+.card-row{display:flex;align-items:center;justify-content:space-between;}
+.card-price{font-size:20px;font-weight:800;}
+.card-stars{color:var(--green);font-size:12px;}
+.btn-card{width:100%;background:var(--green);border:none;color:#050d14;padding:12px;border-radius:11px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;margin-top:16px;transition:background 0.18s;}
+.btn-card:hover{background:#4fea92;}
+
+/* search bar on home */
+.home-search{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:36px 48px;}
+.home-search-in{max-width:1160px;margin:0 auto;}
+.hs-lbl{font-size:11px;font-weight:700;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:12px;}
+.hs-bar{display:flex;gap:10px;flex-wrap:wrap;}
+.hs-inp{flex:1;min-width:200px;background:var(--bg4);border:1px solid var(--border2);border-radius:12px;padding:13px 16px;color:var(--white);font-family:inherit;font-size:14px;outline:none;transition:border-color 0.18s,box-shadow 0.18s;}
+.hs-inp::placeholder{color:var(--muted);}
+.hs-inp:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(61,219,130,0.1);}
+.hs-sel{background:var(--bg4);border:1px solid var(--border2);border-radius:12px;padding:13px 16px;color:var(--white);font-family:inherit;font-size:14px;outline:none;cursor:pointer;appearance:none;min-width:140px;}
+.hs-sel option{background:var(--bg3);}
+.btn-hs{background:var(--green);border:none;color:#050d14;padding:13px 24px;border-radius:12px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;transition:all 0.18s;white-space:nowrap;}
+.btn-hs:hover{background:#4fea92;box-shadow:0 4px 16px rgba(61,219,130,0.3);}
+.pop-tags{margin-top:13px;display:flex;gap:7px;flex-wrap:wrap;align-items:center;}
+.pop-lbl{font-size:12px;color:var(--muted);}
+.pop-chip{font-size:12px;padding:5px 12px;background:var(--bg4);border:1px solid var(--border);border-radius:8px;color:var(--muted);cursor:pointer;transition:all 0.18s;}
+.pop-chip:hover{border-color:var(--green);color:var(--green);background:var(--glow);}
+
+/* how-it-works */
+.home-sec{padding:84px 48px;max-width:1160px;margin:0 auto;}
+.home-sec-alt{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:84px 48px;}
+.home-sec-alt-in{max-width:1160px;margin:0 auto;}
+.sec-eye{font-size:11px;font-weight:700;color:var(--green);letter-spacing:1.2px;text-transform:uppercase;margin-bottom:10px;}
+.sec-title{font-size:38px;font-weight:900;letter-spacing:-1.5px;line-height:1.1;margin-bottom:48px;}
+.steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+.step-card{background:var(--bg3);border:1px solid var(--border);border-radius:16px;padding:28px;transition:all 0.25s;position:relative;overflow:hidden;}
+.step-card::after{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,transparent);transition:background 0.25s;}
+.step-card:hover{border-color:rgba(61,219,130,0.3);transform:translateY(-5px);box-shadow:0 16px 48px rgba(0,0,0,0.2);}
+.step-card:hover::after{background:linear-gradient(90deg,transparent,rgba(61,219,130,0.5),transparent);}
+.step-num{font-size:11px;font-weight:800;color:var(--green);letter-spacing:2px;margin-bottom:14px;}
+.step-ico{font-size:30px;margin-bottom:14px;}
+.step-card h3{font-size:16px;font-weight:700;margin-bottom:9px;}
+.step-card p{font-size:14px;color:var(--muted);line-height:1.65;}
+
+/* top tutors on home */
+.tutors-hdr{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:28px;}
+.tutors-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+.tc{background:var(--bg3);border:1px solid var(--border);border-radius:16px;padding:20px;cursor:pointer;transition:all 0.22s;position:relative;overflow:hidden;}
+.tc:hover{border-color:rgba(61,219,130,0.3);transform:translateY(-4px);box-shadow:0 12px 36px rgba(0,0,0,0.2);}
+.tc-top{display:flex;align-items:center;gap:11px;margin-bottom:12px;}
+.tc-av{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;color:#050d14;flex-shrink:0;}
+.tc-name{font-size:14px;font-weight:700;}
+.tc-spec{font-size:12px;color:var(--muted);margin-top:2px;}
+.tc-rating{font-size:13px;font-weight:700;color:var(--green);margin-left:auto;}
+.tc-tags{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:13px;}
+.tc-bot{display:flex;align-items:center;justify-content:space-between;padding-top:13px;border-top:1px solid var(--border);}
+.tc-price{font-size:15px;font-weight:800;}
+.tc-psub{font-size:11px;color:var(--muted);}
+.tc-btn{background:var(--glow);border:1px solid rgba(61,219,130,0.2);color:var(--green);padding:6px 12px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;transition:background 0.18s;}
+.tc-btn:hover{background:rgba(61,219,130,0.2);}
+
+/* calculator */
+.calc-wrap{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;}
+.calc-left-eye{font-size:11px;font-weight:700;color:var(--green);letter-spacing:1.2px;text-transform:uppercase;margin-bottom:10px;}
+.calc-left-title{font-size:38px;font-weight:900;letter-spacing:-1.5px;line-height:1.1;margin-bottom:16px;}
+.calc-left-desc{font-size:16px;color:var(--muted);line-height:1.7;margin-bottom:28px;}
+.perks{list-style:none;display:flex;flex-direction:column;gap:12px;margin-bottom:32px;}
+.perks li{display:flex;align-items:center;gap:11px;font-size:15px;}
+.perk-ic{width:22px;height:22px;border-radius:50%;background:rgba(61,219,130,0.12);color:var(--green);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0;}
+.calc-card{background:var(--bg3);border:1px solid var(--border2);border-radius:20px;padding:28px;position:relative;overflow:hidden;}
+.calc-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(61,219,130,0.4),transparent);}
+.calc-lbl{display:block;font-size:11px;font-weight:700;color:var(--muted);letter-spacing:0.5px;text-transform:uppercase;margin-bottom:8px;}
+.calc-row{display:flex;align-items:center;gap:12px;margin-bottom:18px;}
+.calc-range{flex:1;-webkit-appearance:none;height:4px;border-radius:2px;background:var(--bg4);outline:none;cursor:pointer;}
+.calc-range::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--green);cursor:pointer;}
+.calc-val{font-size:15px;font-weight:700;min-width:52px;text-align:right;}
+.calc-comm{display:flex;justify-content:space-between;align-items:center;padding:12px 15px;background:var(--bg4);border-radius:10px;margin-bottom:18px;font-size:14px;}
+.calc-result{background:linear-gradient(135deg,rgba(61,219,130,0.1),rgba(61,219,130,0.03));border:1px solid rgba(61,219,130,0.2);border-radius:13px;padding:20px;text-align:center;}
+.calc-res-lbl{font-size:11px;font-weight:700;color:var(--muted);letter-spacing:0.5px;text-transform:uppercase;margin-bottom:6px;}
+.calc-res-amt{font-size:48px;font-weight:900;letter-spacing:-2px;color:var(--green);line-height:1;}
+.calc-res-sub{font-size:13px;color:var(--muted);margin-top:6px;}
+.calc-breakdown{margin-top:14px;}
+.calc-br{display:flex;justify-content:space-between;font-size:13px;padding:8px 0;border-top:1px solid var(--border);}
+.calc-br-lbl{color:var(--muted);}
+
+/* ════════════ FIND TUTORS PAGE ════════════ */
+.find-hero{padding:60px 48px 40px;background:var(--bg2);border-bottom:1px solid var(--border);position:relative;overflow:hidden;}
+.find-hero-glow{position:absolute;width:600px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(61,219,130,0.05),transparent 70%);top:-100px;right:-100px;pointer-events:none;}
+.find-hero-in{max-width:1160px;margin:0 auto;position:relative;}
+.find-hero h1{font-size:46px;font-weight:900;letter-spacing:-2.2px;line-height:1.08;margin-bottom:12px;}
+.find-hero h1 .g{background:linear-gradient(135deg,#EEF3FF,#8BA8CC);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.find-hero p{font-size:16px;color:var(--muted);margin-bottom:28px;max-width:480px;}
+.find-stats-row{display:flex;gap:24px;margin-bottom:32px;flex-wrap:wrap;}
+.find-stat{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);}
+.find-stat-dot{width:6px;height:6px;border-radius:50%;background:var(--green);}
+.find-stat strong{color:var(--white);font-weight:700;}
+.find-sb{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px;}
+.find-inp{flex:1;min-width:200px;background:var(--bg3);border:1px solid var(--border2);border-radius:13px;padding:14px 18px 14px 44px;color:var(--white);font-family:inherit;font-size:15px;outline:none;transition:all 0.18s;position:relative;}
+.find-inp::placeholder{color:var(--muted);}
+.find-inp:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(61,219,130,0.1);}
+.find-inp-wrap{position:relative;flex:1;min-width:200px;}
+.find-inp-wrap::before{content:'🔍';position:absolute;left:15px;top:50%;transform:translateY(-50%);font-size:15px;pointer-events:none;}
+.find-inp-wrap .find-inp{width:100%;padding-left:44px;}
+.find-sel{background:var(--bg3);border:1px solid var(--border2);border-radius:13px;padding:14px 16px;color:var(--white);font-family:inherit;font-size:14px;outline:none;cursor:pointer;appearance:none;min-width:150px;}
+.find-sel option{background:var(--bg2);}
+.btn-find{background:var(--green);border:none;color:#050d14;padding:14px 26px;border-radius:13px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;transition:all 0.18s;white-space:nowrap;}
+.btn-find:hover{background:#4fea92;box-shadow:0 4px 20px rgba(61,219,130,0.3);}
+.fchips{display:flex;gap:7px;flex-wrap:wrap;}
+.fchip{padding:7px 15px;border-radius:50px;border:1px solid var(--border2);background:none;color:var(--muted);font-family:inherit;font-size:13px;font-weight:500;cursor:pointer;transition:all 0.18s;}
+.fchip:hover,.fchip.on{border-color:var(--green);color:var(--green);background:var(--glow);}
+
+.find-body{display:grid;grid-template-columns:256px 1fr;gap:20px;max-width:1160px;margin:0 auto;padding:28px 48px 80px;}
+.f-panel{background:var(--bg2);border:1px solid var(--border);border-radius:18px;padding:22px;height:fit-content;position:sticky;top:80px;}
+.f-sec{margin-bottom:26px;}.f-sec:last-child{margin-bottom:0;}
+.f-sec-ttl{font-size:11px;font-weight:700;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:12px;}
+.f-opts{display:flex;flex-direction:column;gap:6px;}
+.f-opt{display:flex;align-items:center;gap:9px;cursor:pointer;padding:5px 7px;border-radius:8px;transition:background 0.15s;}
+.f-opt:hover{background:rgba(255,255,255,0.04);}
+.f-opt input{accent-color:var(--green);width:15px;height:15px;cursor:pointer;flex-shrink:0;}
+.f-opt-lbl{font-size:13px;color:var(--muted);}
+.f-range{width:100%;-webkit-appearance:none;height:4px;border-radius:2px;background:var(--bg4);outline:none;cursor:pointer;margin-bottom:8px;}
+.f-range::-webkit-slider-thumb{-webkit-appearance:none;width:17px;height:17px;border-radius:50%;background:var(--green);cursor:pointer;}
+.f-range-vals{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);}
+
+.r-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;}
+.r-cnt{font-size:14px;color:var(--muted);}
+.r-sort{background:var(--bg3);border:1px solid var(--border2);border-radius:10px;padding:7px 13px;color:var(--white);font-family:inherit;font-size:13px;outline:none;cursor:pointer;appearance:none;}
+.tlist{display:flex;flex-direction:column;gap:14px;}
+.trow{background:var(--bg2);border:1px solid var(--border);border-radius:18px;padding:22px;display:grid;grid-template-columns:56px 1fr auto;gap:18px;cursor:pointer;transition:all 0.22s;}
+.trow:hover{border-color:rgba(61,219,130,0.3);transform:translateY(-2px);box-shadow:0 10px 36px rgba(0,0,0,0.2);}
+.trow.ani{animation:slideUp 0.4s cubic-bezier(.22,1,.36,1) both;}
+.trow:nth-child(1){animation-delay:0s;}.trow:nth-child(2){animation-delay:0.07s;}.trow:nth-child(3){animation-delay:0.14s;}.trow:nth-child(4){animation-delay:0.21s;}.trow:nth-child(5){animation-delay:0.28s;}
+.t-av{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;color:#050d14;flex-shrink:0;}
+.t-name{font-size:16px;font-weight:700;margin-bottom:3px;}
+.t-sub{font-size:13px;color:var(--muted);margin-bottom:10px;}
+.t-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px;}
+.t-about{font-size:13px;color:var(--muted);line-height:1.6;}
+.t-online{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;color:var(--green);background:var(--glow);border:1px solid rgba(61,219,130,0.2);padding:3px 9px;border-radius:50px;margin-left:8px;}
+.t-online::before{content:'';width:5px;height:5px;background:var(--green);border-radius:50%;animation:pulse 2s infinite;}
+.t-right{text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:10px;min-width:110px;}
+.t-price{font-size:22px;font-weight:900;letter-spacing:-0.5px;}
+.t-price-sub{font-size:11px;color:var(--muted);margin-top:-6px;}
+.t-stars{color:var(--green);font-size:13px;font-weight:700;}
+.t-revs{font-size:11px;color:var(--muted);}
+.btn-book-row{background:var(--green);border:none;color:#050d14;padding:10px 18px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;transition:all 0.18s;white-space:nowrap;}
+.btn-book-row:hover{background:#4fea92;transform:translateY(-1px);}
+
+/* ════════════ SUBJECTS PAGE ════════════ */
+.subj-hero{padding:80px 48px 0;max-width:1160px;margin:0 auto;}
+.subj-hero-eye{font-size:11px;font-weight:700;color:var(--green);letter-spacing:1.2px;text-transform:uppercase;margin-bottom:12px;}
+.subj-hero h1{font-size:52px;font-weight:900;letter-spacing:-2.5px;line-height:1.04;margin-bottom:16px;}
+.subj-hero h1 .g{background:linear-gradient(135deg,#EEF3FF,#8BA8CC);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.subj-hero h1 em{font-style:normal;background:linear-gradient(135deg,#3DDB82,#2ff0a0);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.subj-hero p{font-size:17px;color:var(--muted);line-height:1.7;max-width:520px;margin-bottom:36px;}
+.subj-cats{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:52px;}
+.s-cat{padding:8px 18px;border-radius:50px;border:1px solid var(--border2);background:none;color:var(--muted);font-family:inherit;font-size:14px;cursor:pointer;transition:all 0.18s;}
+.s-cat:hover,.s-cat.on{border-color:var(--green);color:var(--green);background:var(--glow);}
+.subj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;padding:0 48px 80px;max-width:1160px;margin:0 auto;}
+.s-card{background:var(--bg2);border:1px solid var(--border);border-radius:20px;padding:28px;cursor:pointer;transition:all 0.25s;position:relative;overflow:hidden;}
+.s-card:hover{transform:translateY(-5px);box-shadow:0 20px 56px rgba(0,0,0,0.25);}
+.s-card-top-bar{position:absolute;top:0;left:0;right:0;height:3px;border-radius:0;}
+.s-ico{font-size:38px;margin-bottom:16px;display:block;}
+.s-name{font-size:19px;font-weight:800;letter-spacing:-0.5px;margin-bottom:9px;}
+.s-desc{font-size:13px;color:var(--muted);line-height:1.65;margin-bottom:16px;}
+.s-topics{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px;}
+.s-topic{font-size:11px;padding:4px 10px;border-radius:6px;background:rgba(255,255,255,0.05);border:1px solid var(--border);color:var(--muted);}
+.s-meta{display:flex;justify-content:space-between;align-items:center;padding-top:16px;border-top:1px solid var(--border);}
+.s-cnt{font-size:13px;color:var(--muted);}
+.s-from{font-size:14px;font-weight:700;}
+.s-card.ani{animation:scaleIn 0.5s cubic-bezier(.22,1,.36,1) both;}
+.s-card:nth-child(1){animation-delay:0s;}.s-card:nth-child(2){animation-delay:0.06s;}.s-card:nth-child(3){animation-delay:0.12s;}.s-card:nth-child(4){animation-delay:0.18s;}.s-card:nth-child(5){animation-delay:0.24s;}.s-card:nth-child(6){animation-delay:0.30s;}
+
+/* ════════════ PRICING PAGE ════════════ */
+.price-hero{padding:80px 48px 0;max-width:780px;margin:0 auto;text-align:center;}
+.price-hero-eye{font-size:11px;font-weight:700;color:var(--green);letter-spacing:1.2px;text-transform:uppercase;margin-bottom:12px;}
+.price-hero h1{font-size:52px;font-weight:900;letter-spacing:-2.5px;line-height:1.04;margin-bottom:16px;}
+.price-hero h1 .g{background:linear-gradient(135deg,#EEF3FF,#8BA8CC);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.price-hero p{font-size:17px;color:var(--muted);line-height:1.7;margin-bottom:40px;}
+.price-toggle{display:inline-flex;background:var(--bg3);border:1px solid var(--border);border-radius:13px;padding:4px;margin-bottom:52px;}
+.pt-btn{background:none;border:none;color:var(--muted);font-family:inherit;font-size:14px;font-weight:600;padding:10px 24px;border-radius:10px;cursor:pointer;transition:all 0.18s;}
+.pt-btn.on{background:var(--bg4);color:var(--white);box-shadow:0 2px 10px rgba(0,0,0,0.3);}
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:1000px;margin:0 auto 52px;padding:0 48px;}
+.p-card{background:var(--bg2);border:1px solid var(--border);border-radius:20px;padding:30px;position:relative;transition:all 0.25s;}
+.p-card:hover{border-color:rgba(61,219,130,0.25);transform:translateY(-4px);}
+.p-card.feat{border-color:rgba(61,219,130,0.4);background:linear-gradient(160deg,rgba(61,219,130,0.065),var(--bg2));}
+.p-card.feat::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--green),transparent);border-radius:2px 2px 0 0;}
+.p-card.ani{animation:fadeUp 0.45s cubic-bezier(.22,1,.36,1) both;}
+.p-card:nth-child(1){animation-delay:0s;}.p-card:nth-child(2){animation-delay:0.1s;}.p-card:nth-child(3){animation-delay:0.2s;}
+.p-badge{display:inline-block;font-size:11px;font-weight:800;color:#050d14;background:var(--green);padding:4px 12px;border-radius:50px;margin-bottom:14px;letter-spacing:0.5px;}
+.p-plan{font-size:13px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;}
+.p-amt{font-size:48px;font-weight:900;letter-spacing:-2px;line-height:1;margin-bottom:4px;}
+.p-per{font-size:13px;color:var(--muted);margin-bottom:20px;}
+.p-desc{font-size:14px;color:var(--muted);line-height:1.6;margin-bottom:22px;padding-bottom:20px;border-bottom:1px solid var(--border);}
+.p-feats{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:26px;}
+.p-feats li{display:flex;align-items:flex-start;gap:9px;font-size:14px;}
+.p-y{color:var(--green);flex-shrink:0;font-size:13px;margin-top:1px;}
+.p-n{color:var(--muted);flex-shrink:0;font-size:13px;margin-top:1px;}
+.p-feats li.dim{color:var(--muted);}
+.btn-plan{width:100%;padding:13px;border-radius:12px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;transition:all 0.18s;}
+.btn-plan-g{background:var(--green);border:none;color:#050d14;}.btn-plan-g:hover{background:#4fea92;transform:translateY(-1px);}
+.btn-plan-o{background:none;border:1px solid var(--border2);color:var(--white);}.btn-plan-o:hover{border-color:var(--green);background:var(--glow);}
+
+.compare-sec{max-width:1000px;margin:0 auto 52px;padding:0 48px;}
+.compare-ttl{font-size:22px;font-weight:800;letter-spacing:-0.5px;text-align:center;margin-bottom:24px;}
+.ct{width:100%;border-collapse:collapse;border-radius:14px;overflow:hidden;}
+.ct th,.ct td{padding:13px 18px;text-align:left;font-size:14px;border-bottom:1px solid var(--border);}
+.ct th{font-size:11px;font-weight:700;color:var(--muted);letter-spacing:1px;text-transform:uppercase;background:var(--bg2);}
+.ct td:first-child{color:var(--muted);font-size:13px;}
+.ct td.yes{color:var(--green);font-weight:700;}.ct td.no{color:var(--muted);}
+.ct tr:hover td{background:rgba(255,255,255,0.02);}
+
+.faq-sec{max-width:720px;margin:0 auto;padding:0 48px 80px;}
+.faq-eye{font-size:11px;font-weight:700;color:var(--green);letter-spacing:1.2px;text-transform:uppercase;text-align:center;margin-bottom:10px;}
+.faq-ttl{font-size:32px;font-weight:900;letter-spacing:-1px;text-align:center;margin-bottom:36px;}
+.faq-item{border:1px solid var(--border);border-radius:13px;margin-bottom:9px;overflow:hidden;transition:border-color 0.2s;}
+.faq-item.open{border-color:rgba(61,219,130,0.3);}
+.faq-q{display:flex;justify-content:space-between;align-items:center;padding:17px 20px;cursor:pointer;font-size:15px;font-weight:600;gap:14px;transition:color 0.2s;}
+.faq-item.open .faq-q{color:var(--green);}
+.faq-arrow{color:var(--muted);font-size:20px;flex-shrink:0;transition:transform 0.25s,color 0.2s;line-height:1;}
+.faq-item.open .faq-arrow{transform:rotate(45deg);color:var(--green);}
+.faq-ans{max-height:0;overflow:hidden;transition:max-height 0.35s cubic-bezier(.22,1,.36,1);}
+.faq-item.open .faq-ans{max-height:200px;}
+.faq-ans-in{padding:0 20px 17px;font-size:14px;color:var(--muted);line-height:1.7;}
+
+/* ════════════ AUTH ════════════ */
+.auth-layout{display:grid;grid-template-columns:1fr 1fr;min-height:calc(100vh - 64px);}
+.auth-left{background:var(--bg2);border-right:1px solid var(--border);padding:56px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;}
+.auth-left-glow{position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(61,219,130,0.06),transparent 70%);top:-100px;left:-100px;pointer-events:none;}
+.auth-left h2{font-size:36px;font-weight:900;letter-spacing:-1.5px;line-height:1.1;margin-bottom:14px;}
+.auth-left h2 .g{background:linear-gradient(135deg,#EEF3FF,#8BA8CC);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.auth-left h2 em{font-style:normal;background:linear-gradient(135deg,#3DDB82,#2ff0a0);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.auth-left p{font-size:15px;color:var(--muted);line-height:1.7;margin-bottom:32px;max-width:320px;}
+.feat-list{display:flex;flex-direction:column;gap:14px;margin-bottom:36px;}
+.feat-item{display:flex;align-items:flex-start;gap:13px;}
+.feat-ico{width:36px;height:36px;border-radius:10px;background:var(--glow);border:1px solid rgba(61,219,130,0.2);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
+.feat-ttl{font-size:14px;font-weight:700;margin-bottom:3px;}
+.feat-sub{font-size:13px;color:var(--muted);line-height:1.5;}
+.auth-testim{padding-top:24px;border-top:1px solid var(--border);}
+.testim-txt{font-size:14px;color:var(--muted);font-style:italic;line-height:1.6;margin-bottom:12px;}
+.testim-auth{display:flex;align-items:center;gap:10px;}
+.testim-av{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--green),var(--green2));display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#050d14;}
+.testim-name{font-size:13px;font-weight:700;}
+.testim-role{font-size:12px;color:var(--muted);}
+.auth-right{padding:56px;display:flex;align-items:center;justify-content:center;}
+.auth-inner{max-width:420px;width:100%;}
+.auth-tabs{display:flex;background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:4px;margin-bottom:26px;}
+.auth-tab{flex:1;background:none;border:none;color:var(--muted);font-family:inherit;font-size:14px;font-weight:600;padding:10px;border-radius:9px;cursor:pointer;transition:all 0.18s;}
+.auth-tab.on{background:var(--bg4);color:var(--white);box-shadow:0 2px 8px rgba(0,0,0,0.3);}
+.role-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px;}
+.role-card{background:var(--bg3);border:1px solid var(--border);border-radius:13px;padding:17px;cursor:pointer;transition:all 0.18s;text-align:center;}
+.role-card:hover{border-color:var(--border2);transform:translateY(-2px);}
+.role-card.on{border-color:var(--green);background:var(--glow);}
+.role-card.on .role-ttl{color:var(--green);}
+.role-emoji{font-size:24px;margin-bottom:8px;}
+.role-ttl{font-size:14px;font-weight:700;margin-bottom:4px;}
+.role-sub{font-size:12px;color:var(--muted);}
+.form-ttl{font-size:22px;font-weight:800;letter-spacing:-0.5px;margin-bottom:6px;}
+.form-sub{font-size:14px;color:var(--muted);margin-bottom:22px;}
+.f-grp{margin-bottom:14px;}
+.f-lbl{display:block;font-size:11px;font-weight:700;color:var(--muted);letter-spacing:0.5px;text-transform:uppercase;margin-bottom:7px;}
+.f-inp{width:100%;background:var(--bg3);border:1px solid var(--border2);border-radius:12px;padding:13px 15px;color:var(--white);font-family:inherit;font-size:14px;outline:none;transition:all 0.18s;}
+.f-inp::placeholder{color:var(--muted);}
+.f-inp:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(61,219,130,0.1);}
+.f-inp.err{border-color:var(--red);}
+.f-err{font-size:12px;color:var(--red);margin-top:4px;display:none;}
+.f-err.show{display:block;}
+.f-row2{display:grid;grid-template-columns:1fr 1fr;gap:11px;}
+.inp-wr{position:relative;}
+.inp-wr .f-inp{padding-right:42px;}
+.tog-pw{position:absolute;right:13px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--muted);cursor:pointer;font-size:15px;transition:color 0.18s;}
+.tog-pw:hover{color:var(--white);}
+.forg-lnk{float:right;font-size:12px;color:var(--muted);cursor:pointer;transition:color 0.18s;}
+.forg-lnk:hover{color:var(--green);}
+.pw-bars{display:flex;gap:4px;height:3px;margin-top:7px;}
+.pw-bar{flex:1;border-radius:2px;background:var(--border2);transition:background 0.3s;}
+.pw-bar.weak{background:#ff5c5c;}.pw-bar.med{background:#ffb84d;}.pw-bar.str{background:var(--green);}
+.pw-hint{font-size:11px;color:var(--muted);margin-top:5px;}
+.f-check{display:flex;align-items:flex-start;gap:9px;margin-bottom:16px;}
+.f-check input{width:15px;height:15px;accent-color:var(--green);margin-top:2px;flex-shrink:0;cursor:pointer;}
+.f-check label{font-size:13px;color:var(--muted);line-height:1.5;cursor:pointer;}
+.f-check a{color:var(--green);text-decoration:none;cursor:pointer;}
+.btn-sub{width:100%;background:var(--green);border:none;color:#050d14;padding:14px;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;transition:all 0.18s;margin-bottom:13px;}
+.btn-sub:hover{background:#4fea92;transform:translateY(-1px);box-shadow:0 8px 24px rgba(61,219,130,0.28);}
+.btn-sub:disabled{background:var(--bg4);color:var(--muted);cursor:not-allowed;transform:none;box-shadow:none;}
+.btn-back-xs{background:var(--bg4);border:none;color:var(--muted);padding:14px;border-radius:12px;font-size:17px;cursor:pointer;font-family:inherit;transition:background 0.18s;width:48px;flex-shrink:0;}
+.btn-back-xs:hover{background:var(--bg3);color:var(--white);}
+.auth-sw{text-align:center;font-size:13px;color:var(--muted);}
+.auth-sw a{color:var(--green);font-weight:600;cursor:pointer;}
+.stepper{display:flex;align-items:center;margin-bottom:22px;}
+.s-dot{width:28px;height:28px;border-radius:50%;border:2px solid var(--border2);color:var(--muted);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;transition:all 0.25s;flex-shrink:0;}
+.s-dot.act{border-color:var(--green);color:var(--green);}
+.s-dot.done{background:var(--green);border-color:var(--green);color:#050d14;}
+.s-line{flex:1;height:2px;background:var(--border);transition:background 0.25s;}
+.s-line.done{background:var(--green);}
+.spinner{display:none;width:18px;height:18px;border:2px solid rgba(5,13,20,0.3);border-top-color:#050d14;border-radius:50%;animation:spin 0.6s linear infinite;margin:0 auto;}
+.loading .btn-lbl{display:none;}.loading .spinner{display:block;}
+.suc-box{text-align:center;animation:fadeUp 0.5s cubic-bezier(.22,1,.36,1) both;}
+.suc-ico{width:72px;height:72px;border-radius:50%;background:var(--glow);border:2px solid rgba(61,219,130,0.4);display:flex;align-items:center;justify-content:center;font-size:30px;margin:0 auto 22px;animation:pulse 2s infinite;}
+.suc-ttl{font-size:24px;font-weight:800;letter-spacing:-0.5px;margin-bottom:10px;}
+.suc-sub{font-size:15px;color:var(--muted);line-height:1.6;margin-bottom:26px;}
+
+/* LEGAL / MISC PAGES */
+.legal-wrap{max-width:760px;margin:0 auto;padding:68px 48px;}
+.legal-back{display:inline-flex;align-items:center;gap:7px;color:var(--muted);font-size:14px;font-weight:600;cursor:pointer;margin-bottom:32px;transition:color 0.18s;}
+.legal-back:hover{color:var(--white);}
+.legal-wrap h1{font-size:34px;font-weight:800;letter-spacing:-1px;margin-bottom:7px;}
+.legal-date{font-size:13px;color:var(--muted);margin-bottom:44px;}
+.legal-wrap h2{font-size:19px;font-weight:700;margin:32px 0 11px;}
+.legal-wrap p{font-size:15px;color:var(--muted);line-height:1.75;margin-bottom:12px;}
+.legal-wrap ul{padding-left:18px;margin-bottom:12px;}
+.legal-wrap ul li{font-size:15px;color:var(--muted);line-height:1.75;margin-bottom:5px;}
+.forgot-wrap{max-width:440px;margin:0 auto;padding:76px 48px;}
+.alert-ok{background:var(--glow);border:1px solid rgba(61,219,130,0.25);border-radius:12px;padding:15px;font-size:14px;color:var(--green);text-align:center;display:none;margin-top:4px;}
+
+/* ════════════ TUTOR PROFILE ════════════ */
+.profile-wrap{max-width:1100px;margin:0 auto;padding:48px;}
+.profile-back{display:inline-flex;align-items:center;gap:8px;color:var(--muted);font-size:14px;font-weight:600;cursor:pointer;margin-bottom:32px;transition:color .18s;}
+.profile-back:hover{color:var(--white);}
+.profile-header{display:grid;grid-template-columns:auto 1fr auto;gap:28px;align-items:start;background:var(--bg2);border:1px solid var(--border);border-radius:22px;padding:32px;margin-bottom:24px;position:relative;overflow:hidden;}
+.profile-header::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--green),transparent);}
+.profile-av-big{width:96px;height:96px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:900;color:#050d14;flex-shrink:0;position:relative;}
+.profile-av-big .plan-dot{position:absolute;bottom:4px;right:4px;width:20px;height:20px;border-radius:50%;border:2px solid var(--bg2);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:800;}
+.profile-name-row{display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap;}
+.profile-name{font-size:26px;font-weight:900;letter-spacing:-0.8px;}
+.plan-badge{font-size:11px;font-weight:800;padding:4px 11px;border-radius:50px;letter-spacing:0.5px;}
+.plan-free{background:rgba(255,255,255,0.08);color:var(--muted);}
+.plan-pro{background:linear-gradient(135deg,rgba(61,219,130,0.2),rgba(61,219,130,0.1));color:var(--green);border:1px solid rgba(61,219,130,0.3);}
+.plan-biz{background:linear-gradient(135deg,rgba(255,215,0,0.2),rgba(255,170,0,0.1));color:#ffd700;border:1px solid rgba(255,215,0,0.3);}
+.profile-spec{font-size:15px;color:var(--muted);margin-bottom:10px;}
+.profile-meta-row{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:12px;}
+.profile-meta-item{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--muted);}
+.profile-meta-item strong{color:var(--white);}
+.profile-tags{display:flex;gap:6px;flex-wrap:wrap;}
+.profile-right{text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:12px;}
+.profile-price-big{font-size:36px;font-weight:900;letter-spacing:-1px;}
+.profile-price-sub{font-size:13px;color:var(--muted);}
+.btn-contact-tutor{background:var(--green);border:none;color:#050d14;padding:12px 24px;border-radius:12px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;transition:all .18s;white-space:nowrap;}
+.btn-contact-tutor:hover{background:#4fea92;transform:translateY(-1px);}
+.btn-book-tutor{background:none;border:1px solid var(--border2);color:var(--white);padding:12px 24px;border-radius:12px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;transition:all .18s;white-space:nowrap;}
+.btn-book-tutor:hover{border-color:var(--green);background:var(--glow);}
+.profile-body{display:grid;grid-template-columns:1fr 340px;gap:20px;}
+.profile-section{background:var(--bg2);border:1px solid var(--border);border-radius:18px;padding:26px;margin-bottom:16px;}
+.profile-sec-ttl{font-size:13px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:18px;}
+.profile-about{font-size:15px;color:var(--muted);line-height:1.75;}
+.reviews-list{display:flex;flex-direction:column;gap:16px;}
+.review-item{padding-bottom:16px;border-bottom:1px solid var(--border);}
+.review-item:last-child{border-bottom:none;padding-bottom:0;}
+.review-top{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.review-av{width:32px;height:32px;border-radius:50%;background:var(--bg4);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;}
+.review-name{font-size:14px;font-weight:700;}
+.review-stars{color:var(--green);font-size:12px;margin-left:auto;}
+.review-date{font-size:11px;color:var(--muted);}
+.review-text{font-size:14px;color:var(--muted);line-height:1.6;}
+/* mini calendar in profile */
+.mini-cal{background:var(--bg2);border:1px solid var(--border);border-radius:18px;padding:22px;margin-bottom:16px;}
+.mini-cal-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;}
+.mini-cal-month{font-size:15px;font-weight:700;}
+.mini-cal-nav{background:none;border:none;color:var(--muted);font-size:18px;cursor:pointer;padding:4px 8px;border-radius:7px;transition:all .18s;}
+.mini-cal-nav:hover{background:var(--bg3);color:var(--white);}
+.mini-cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center;}
+.mini-cal-day-hdr{font-size:11px;font-weight:600;color:var(--muted);padding:4px 0;}
+.cal-day{width:100%;aspect-ratio:1;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px;cursor:pointer;transition:all .18s;background:none;border:none;color:var(--muted);font-family:inherit;}
+.cal-day:hover:not(.empty):not(.today){background:var(--bg3);color:var(--white);}
+.cal-day.today{background:var(--green);color:#050d14;font-weight:800;}
+.cal-day.has-lesson{background:rgba(61,219,130,0.15);color:var(--green);font-weight:700;}
+.cal-day.booked{background:rgba(74,130,230,0.2);color:#78aaff;font-weight:700;}
+.cal-day.empty{cursor:default;}
+.cal-day.past{opacity:0.35;cursor:default;}
+
+/* ════════════ CALENDAR PAGE ════════════ */
+.cal-page{max-width:1100px;margin:0 auto;padding:48px;}
+.cal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:32px;flex-wrap:wrap;gap:16px;}
+.cal-header h1{font-size:36px;font-weight:900;letter-spacing:-1.5px;}
+.cal-view-sw{display:flex;background:var(--bg3);border:1px solid var(--border);border-radius:11px;padding:3px;gap:2px;}
+.cal-view-btn{background:none;border:none;color:var(--muted);font-family:inherit;font-size:13px;font-weight:600;padding:8px 18px;border-radius:8px;cursor:pointer;transition:all .18s;}
+.cal-view-btn.on{background:var(--bg4);color:var(--white);}
+.cal-layout{display:grid;grid-template-columns:1fr 300px;gap:20px;}
+.cal-main{background:var(--bg2);border:1px solid var(--border);border-radius:20px;overflow:hidden;}
+.cal-main-hdr{display:flex;align-items:center;justify-content:space-between;padding:20px 24px;border-bottom:1px solid var(--border);}
+.cal-main-month{font-size:18px;font-weight:800;letter-spacing:-0.5px;}
+.cal-main-nav{background:none;border:none;color:var(--muted);font-size:20px;cursor:pointer;padding:6px 10px;border-radius:8px;transition:all .18s;font-family:inherit;}
+.cal-main-nav:hover{background:var(--bg3);color:var(--white);}
+.cal-week-row{display:grid;grid-template-columns:repeat(7,1fr);border-bottom:1px solid var(--border);}
+.cal-week-hdr{padding:10px;text-align:center;font-size:11px;font-weight:700;color:var(--muted);letter-spacing:0.5px;text-transform:uppercase;}
+.cal-month-grid{display:grid;grid-template-columns:repeat(7,1fr);}
+.cal-cell{min-height:90px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);padding:8px;cursor:pointer;transition:background .15s;position:relative;}
+.cal-cell:nth-child(7n){border-right:none;}
+.cal-cell:hover{background:rgba(255,255,255,0.02);}
+.cal-cell.other-month{opacity:0.3;}
+.cal-cell.is-today .cal-cell-num{background:var(--green);color:#050d14;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-weight:800;}
+.cal-cell-num{font-size:13px;font-weight:600;color:var(--muted);margin-bottom:6px;width:26px;height:26px;display:flex;align-items:center;justify-content:center;}
+.cal-event{font-size:11px;font-weight:600;padding:3px 7px;border-radius:5px;margin-bottom:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer;}
+.cal-ev-green{background:rgba(61,219,130,0.18);color:var(--green);}
+.cal-ev-blue{background:rgba(74,130,230,0.18);color:#78aaff;}
+.cal-ev-ora{background:rgba(255,160,78,0.18);color:#ffa04e;}
+.cal-sidebar{display:flex;flex-direction:column;gap:14px;}
+.cal-upcoming{background:var(--bg2);border:1px solid var(--border);border-radius:18px;padding:20px;}
+.cal-up-ttl{font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:16px;}
+.cal-up-list{display:flex;flex-direction:column;gap:12px;}
+.cal-lesson-card{background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:14px;cursor:pointer;transition:all .18s;}
+.cal-lesson-card:hover{border-color:rgba(61,219,130,0.3);transform:translateY(-1px);}
+.cal-lc-date{font-size:11px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;}
+.cal-lc-name{font-size:14px;font-weight:700;margin-bottom:3px;}
+.cal-lc-sub{font-size:12px;color:var(--muted);}
+.cal-lc-time{font-size:12px;font-weight:600;color:var(--muted);margin-top:6px;}
+.cal-stats{background:var(--bg2);border:1px solid var(--border);border-radius:18px;padding:20px;}
+.cal-stat-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);}
+.cal-stat-row:last-child{border-bottom:none;}
+.cal-stat-lbl{font-size:13px;color:var(--muted);}
+.cal-stat-val{font-size:15px;font-weight:800;color:var(--green);}
+
+/* ════════════ MESSENGER ════════════ */
+.msg-wrap{display:grid;grid-template-columns:320px 1fr;height:calc(100vh - 64px);}
+.msg-sidebar{background:var(--bg2);border-right:1px solid var(--border);display:flex;flex-direction:column;}
+.msg-sidebar-hdr{padding:20px;border-bottom:1px solid var(--border);}
+.msg-sidebar-ttl{font-size:18px;font-weight:800;letter-spacing:-0.5px;margin-bottom:14px;}
+.msg-search{background:var(--bg3);border:1px solid var(--border2);border-radius:10px;padding:9px 14px;color:var(--white);font-family:inherit;font-size:14px;outline:none;width:100%;transition:border-color .18s;}
+.msg-search::placeholder{color:var(--muted);}
+.msg-search:focus{border-color:var(--green);}
+.msg-list{flex:1;overflow-y:auto;padding:8px;}
+.msg-conv{display:flex;align-items:center;gap:12px;padding:12px;border-radius:12px;cursor:pointer;transition:background .15s;position:relative;}
+.msg-conv:hover{background:var(--bg3);}
+.msg-conv.active{background:rgba(61,219,130,0.1);border:1px solid rgba(61,219,130,0.2);}
+.msg-conv-av{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;color:#050d14;flex-shrink:0;position:relative;}
+.msg-conv-online{position:absolute;bottom:1px;right:1px;width:11px;height:11px;border-radius:50%;background:var(--green);border:2px solid var(--bg2);}
+.msg-conv-name{font-size:14px;font-weight:700;margin-bottom:3px;}
+.msg-conv-last{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:160px;}
+.msg-conv-time{font-size:11px;color:var(--muted);margin-left:auto;flex-shrink:0;align-self:flex-start;margin-top:2px;}
+.msg-unread{position:absolute;top:10px;right:10px;min-width:18px;height:18px;border-radius:9px;background:var(--green);color:#050d14;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;padding:0 4px;}
+.msg-main{display:flex;flex-direction:column;background:var(--bg);}
+.msg-main-hdr{padding:16px 24px;border-bottom:1px solid var(--border);background:var(--bg2);display:flex;align-items:center;gap:14px;}
+.msg-main-av{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:#050d14;flex-shrink:0;}
+.msg-main-name{font-size:15px;font-weight:700;}
+.msg-main-sub{font-size:12px;color:var(--muted);}
+.msg-main-actions{margin-left:auto;display:flex;gap:8px;}
+.msg-action-btn{background:var(--bg3);border:1px solid var(--border2);color:var(--muted);padding:7px 14px;border-radius:9px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;transition:all .18s;}
+.msg-action-btn:hover{border-color:var(--green);color:var(--green);background:var(--glow);}
+.msg-messages{flex:1;overflow-y:auto;padding:24px;display:flex;flex-direction:column;gap:14px;}
+.msg-group{display:flex;flex-direction:column;gap:6px;}
+.msg-group.me{align-items:flex-end;}
+.msg-group.them{align-items:flex-start;}
+.msg-bubble{max-width:68%;padding:11px 15px;border-radius:16px;font-size:14px;line-height:1.55;position:relative;}
+.msg-group.me .msg-bubble{background:var(--green);color:#050d14;border-bottom-right-radius:4px;}
+.msg-group.them .msg-bubble{background:var(--bg3);color:var(--white);border-bottom-left-radius:4px;}
+.msg-time{font-size:10px;color:var(--muted);padding:0 4px;}
+.msg-date-divider{text-align:center;font-size:11px;font-weight:600;color:var(--muted);padding:8px 0;}
+.msg-input-bar{padding:16px 20px;border-top:1px solid var(--border);background:var(--bg2);display:flex;gap:10px;align-items:flex-end;}
+.msg-textarea{flex:1;background:var(--bg3);border:1px solid var(--border2);border-radius:13px;padding:11px 16px;color:var(--white);font-family:inherit;font-size:14px;outline:none;resize:none;max-height:120px;transition:border-color .18s;line-height:1.5;}
+.msg-textarea::placeholder{color:var(--muted);}
+.msg-textarea:focus{border-color:var(--green);}
+.btn-msg-send{background:var(--green);border:none;color:#050d14;width:44px;height:44px;border-radius:12px;font-size:20px;cursor:pointer;transition:all .18s;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.btn-msg-send:hover{background:#4fea92;transform:scale(1.05);}
+.msg-empty{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--muted);gap:12px;}
+.msg-empty-ico{font-size:56px;opacity:0.4;}
+.msg-empty-txt{font-size:15px;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo" onclick="go('home')">Nakl<span>a</span></div>
+  <ul class="nav-links">
+    <li><a id="nl-find" onclick="go('find')" data-i18n="nav_find"></a></li>
+    <li><a id="nl-subj" onclick="go('subjects')" data-i18n="nav_subjects"></a></li>
+    <li><a id="nl-price" onclick="go('pricing')" data-i18n="nav_prices"></a></li>
+    <li><a id="nl-about" onclick="go('about-page')" data-i18n="nav_about"></a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="btn-ghost" onclick="go('calendar')" style="padding:8px 14px;font-size:18px;" title="Календарь">📅</button>
+    <button class="btn-ghost" onclick="go('messages')" style="padding:8px 14px;font-size:18px;position:relative;" title="Сообщения">💬<span style="position:absolute;top:4px;right:4px;width:8px;height:8px;border-radius:50%;background:var(--green);"></span></button>
+    <div class="lang-sw">
+      <button class="lang-btn active" onclick="setLang('ru')">RU</button>
+      <button class="lang-btn" onclick="setLang('lv')">LV</button>
+      <button class="lang-btn" onclick="setLang('en')">EN</button>
+    </div>
+    <button class="btn-ghost" onclick="go('auth');switchTab('login')" data-i18n="nav_login"></button>
+    <button class="btn-green" onclick="go('auth');switchTab('register')" data-i18n="nav_register"></button>
+  </div>
+</nav>
+
+<!-- ══════════════ HOME ══════════════ -->
+<div id="page-home" class="page active">
+  <div class="hero-wrap">
+    <div class="hero-bg-glow"></div>
+    <div class="hero-bg-glow2"></div>
+    <div class="hero">
+      <div style="animation:fadeUp 0.6s cubic-bezier(.22,1,.36,1) both;">
+        <div class="hero-eye"><div class="hero-dot"></div><span data-i18n="hero_eye"></span></div>
+        <h1><span class="grad" data-i18n="hero_h1a"></span><br><em data-i18n="hero_h1b"></em><br><span class="grad" data-i18n="hero_h1c"></span></h1>
+        <p class="hero-sub" data-i18n="hero_sub"></p>
+        <div class="hero-btns">
+          <button class="btn-hero" onclick="go('find')" data-i18n="hero_cta1"></button>
+          <button class="btn-outline" onclick="go('about-page')" data-i18n="hero_cta2"></button>
+        </div>
+        <div class="hero-stats">
+          <div><div class="stat-num">200+</div><div class="stat-lbl" data-i18n="stat_t"></div></div>
+          <div><div class="stat-num">12</div><div class="stat-lbl" data-i18n="stat_s"></div></div>
+          <div><div class="stat-num">4.9★</div><div class="stat-lbl" data-i18n="stat_r"></div></div>
+        </div>
+      </div>
+      <div style="animation:fadeUp 0.7s 0.1s cubic-bezier(.22,1,.36,1) both;">
+        <div class="hero-visual">
+          <div class="float-pill" data-i18n="badge_book"></div>
+          <div class="hero-card">
+            <div class="card-av">АК</div>
+            <div class="card-name">Anna Kalniņa</div>
+            <div class="card-spec" data-i18n="card_spec"></div>
+            <div class="card-tags">
+              <span class="tag tag-blue" data-i18n="s_math"></span>
+              <span class="tag tag-pink" data-i18n="s_phys"></span>
+              <span class="tag tag-yel">Latviski</span>
+              <span class="tag tag-cyan" data-i18n="s_ru"></span>
+            </div>
+            <div class="card-row">
+              <div><span class="card-price">15€</span><span style="font-size:12px;color:var(--muted);margin-left:4px;" data-i18n="per_l"></span></div>
+              <div class="card-stars">★★★★★<span style="color:var(--muted);font-size:11px;margin-left:4px;">4.9 (47)</span></div>
+            </div>
+            <button class="btn-card" onclick="go('auth');switchTab('register')" data-i18n="btn_book"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="home-search">
+    <div class="home-search-in">
+      <div class="hs-lbl" data-i18n="search_t"></div>
+      <div class="hs-bar">
+        <input class="hs-inp" type="text" data-i18n-ph="search_ph">
+        <select class="hs-sel"><option data-i18n="lang_any"></option><option>Latviski</option><option data-i18n="lang_ru"></option><option>English</option></select>
+        <select class="hs-sel"><option data-i18n="p_any"></option><option data-i18n="p_1"></option><option>10–20€</option><option>20€+</option></select>
+        <button class="btn-hs" onclick="go('find')" data-i18n="btn_srch"></button>
+      </div>
+      <div class="pop-tags">
+        <span class="pop-lbl" data-i18n="popular"></span>
+        <span class="pop-chip" onclick="go('find')" data-i18n="s_math"></span>
+        <span class="pop-chip" onclick="go('find')" data-i18n="s_en"></span>
+        <span class="pop-chip" onclick="go('find')" data-i18n="s_lv"></span>
+        <span class="pop-chip" onclick="go('find')" data-i18n="s_chem"></span>
+        <span class="pop-chip" onclick="go('find')" data-i18n="s_prog"></span>
+        <span class="pop-chip" onclick="go('find')" data-i18n="s_phys"></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="home-sec">
+    <div class="sec-eye" data-i18n="how_lbl"></div>
+    <div class="sec-title" data-i18n="how_t"></div>
+    <div class="steps-grid">
+      <div class="step-card"><div class="step-num">01</div><div class="step-ico">🔍</div><h3 data-i18n="s1h"></h3><p data-i18n="s1p"></p></div>
+      <div class="step-card"><div class="step-num">02</div><div class="step-ico">📅</div><h3 data-i18n="s2h"></h3><p data-i18n="s2p"></p></div>
+      <div class="step-card"><div class="step-num">03</div><div class="step-ico">✅</div><h3 data-i18n="s3h"></h3><p data-i18n="s3p"></p></div>
+    </div>
+  </div>
+
+  <div class="home-sec-alt">
+    <div class="home-sec-alt-in">
+      <div class="tutors-hdr">
+        <div><div class="sec-eye" data-i18n="t_lbl"></div><div class="sec-title" style="margin-bottom:0;" data-i18n="t_title"></div></div>
+        <button class="btn-ghost" onclick="go('find')" data-i18n="t_all"></button>
+      </div>
+      <div class="tutors-grid">
+        <div class="tc" onclick="go('auth');switchTab('register')">
+          <div class="tc-top"><div class="tc-av" style="background:linear-gradient(135deg,#3DDB82,#2cb96a)">МР</div><div><div class="tc-name">Maris Rozentāls</div><div class="tc-spec" data-i18n="tc1s"></div></div><div class="tc-rating">★ 4.8</div></div>
+          <div class="tc-tags"><span class="tag tag-pur">English</span><span class="tag tag-yel">Latviski</span><span class="tag tag-cyan" data-i18n="s_ru"></span></div>
+          <div class="tc-bot"><div><span class="tc-price">12€</span><span class="tc-psub" data-i18n="per_l"></span></div><button class="tc-btn" data-i18n="btn_book"></button></div>
+        </div>
+        <div class="tc" onclick="go('auth');switchTab('register')">
+          <div class="tc-top"><div class="tc-av" style="background:linear-gradient(135deg,#78aaff,#4470dd)">ЛБ</div><div><div class="tc-name">Līga Bērziņa</div><div class="tc-spec" data-i18n="tc2s"></div></div><div class="tc-rating">★ 5.0</div></div>
+          <div class="tc-tags"><span class="tag tag-blue" data-i18n="s_math"></span><span class="tag tag-yel">Latviski</span></div>
+          <div class="tc-bot"><div><span class="tc-price">18€</span><span class="tc-psub" data-i18n="per_l"></span></div><button class="tc-btn" data-i18n="btn_book"></button></div>
+        </div>
+        <div class="tc" onclick="go('auth');switchTab('register')">
+          <div class="tc-top"><div class="tc-av" style="background:linear-gradient(135deg,#ffa878,#e06030)">КС</div><div><div class="tc-name">Kristīna Siļiņa</div><div class="tc-spec" data-i18n="tc3s"></div></div><div class="tc-rating">★ 4.9</div></div>
+          <div class="tc-tags"><span class="tag tag-ora" data-i18n="s_chem"></span><span class="tag tag-cyan" data-i18n="s_ru"></span><span class="tag tag-yel">Latviski</span></div>
+          <div class="tc-bot"><div><span class="tc-price">14€</span><span class="tc-psub" data-i18n="per_l"></span></div><button class="tc-btn" data-i18n="btn_book"></button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="home-sec">
+    <div class="calc-wrap">
+      <div>
+        <div class="calc-left-eye" data-i18n="ft_lbl"></div>
+        <div class="calc-left-title" data-i18n="ft_title"></div>
+        <p class="calc-left-desc" data-i18n="ft_desc"></p>
+        <ul class="perks">
+          <li><div class="perk-ic">✓</div><span data-i18n="p1"></span></li>
+          <li><div class="perk-ic">✓</div><span data-i18n="p2"></span></li>
+          <li><div class="perk-ic">✓</div><span data-i18n="p3"></span></li>
+          <li><div class="perk-ic">✓</div><span data-i18n="p4"></span></li>
+        </ul>
+        <button class="btn-hero" onclick="go('auth');switchTab('register')" data-i18n="ft_cta"></button>
+      </div>
+      <div class="calc-card">
+        <div style="font-size:16px;font-weight:700;margin-bottom:22px;" data-i18n="calc_t"></div>
+        <label class="calc-lbl" data-i18n="calc_pl"></label>
+        <div class="calc-row"><input type="range" class="calc-range" id="cp" min="5" max="60" value="15" oninput="cu()"><span class="calc-val" id="cpv">15€</span></div>
+        <label class="calc-lbl" data-i18n="calc_ll"></label>
+        <div class="calc-row"><input type="range" class="calc-range" id="cl" min="1" max="80" value="20" oninput="cu()"><span class="calc-val" id="clv">20</span></div>
+        <div class="calc-comm"><span style="color:var(--muted);" data-i18n="calc_cl"></span><span style="font-weight:700;color:#ff9f5a;">12%</span></div>
+        <div class="calc-result">
+          <div class="calc-res-lbl" data-i18n="calc_rl"></div>
+          <div class="calc-res-amt" id="cr">264€</div>
+          <div class="calc-res-sub" data-i18n="calc_rs"></div>
+        </div>
+        <div class="calc-breakdown">
+          <div class="calc-br"><span class="calc-br-lbl" data-i18n="calc_g"></span><span id="cg">300€</span></div>
+          <div class="calc-br"><span class="calc-br-lbl" data-i18n="calc_f"></span><span style="color:#ff9f5a;" id="cf">−36€</span></div>
+          <div class="calc-br"><span class="calc-br-lbl" data-i18n="calc_n"></span><span style="color:var(--green);" id="cn">264€</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ FIND TUTORS ══════════════ -->
+<div id="page-find" class="page">
+  <div class="find-hero">
+    <div class="find-hero-glow"></div>
+    <div class="find-hero-in">
+      <div style="animation:fadeUp 0.5s cubic-bezier(.22,1,.36,1) both;">
+        <h1><span class="g" data-i18n="find_h1a"></span> <em style="font-style:normal;background:linear-gradient(135deg,#3DDB82,#2ff0a0);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;" data-i18n="find_h1b"></em></h1>
+        <p data-i18n="find_sub"></p>
+        <div class="find-stats-row">
+          <div class="find-stat"><div class="find-stat-dot"></div><span data-i18n="fstat1"></span></div>
+          <div class="find-stat"><div class="find-stat-dot"></div><span data-i18n="fstat2"></span></div>
+          <div class="find-stat"><div class="find-stat-dot"></div><span data-i18n="fstat3"></span></div>
+        </div>
+        <div class="find-sb">
+          <div class="find-inp-wrap">
+            <input class="find-inp" type="text" id="find-q" data-i18n-ph="search_ph">
+          </div>
+          <select class="find-sel" id="find-subj">
+            <option value="" data-i18n="all_subj"></option>
+            <option value="math" data-i18n="s_math"></option>
+            <option value="phys" data-i18n="s_phys"></option>
+            <option value="en" data-i18n="s_en"></option>
+            <option value="lv" data-i18n="s_lv"></option>
+            <option value="chem" data-i18n="s_chem"></option>
+            <option value="prog" data-i18n="s_prog"></option>
+          </select>
+          <select class="find-sel" id="find-lang">
+            <option data-i18n="lang_any"></option>
+            <option>Latviski</option>
+            <option data-i18n="lang_ru"></option>
+            <option>English</option>
+          </select>
+          <button class="btn-find" onclick="filterTutors()" data-i18n="btn_srch"></button>
+        </div>
+        <div class="fchips">
+          <button class="fchip on" onclick="setChip(this,'all')" data-i18n="chip_all"></button>
+          <button class="fchip" onclick="setChip(this,'online')" data-i18n="chip_online"></button>
+          <button class="fchip" onclick="setChip(this,'top')" data-i18n="chip_top"></button>
+          <button class="fchip" onclick="setChip(this,'cheap')" data-i18n="chip_cheap"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="find-body">
+    <div class="f-panel" style="animation:slideUp 0.5s 0.1s cubic-bezier(.22,1,.36,1) both;">
+      <div class="f-sec">
+        <div class="f-sec-ttl" data-i18n="f_price"></div>
+        <input type="range" class="f-range" id="f-price-r" min="5" max="60" value="60" oninput="document.getElementById('f-price-v').textContent=this.value+'€';filterTutors()">
+        <div class="f-range-vals"><span data-i18n="p_1"></span><span id="f-price-v">60€</span></div>
+      </div>
+      <div class="f-sec">
+        <div class="f-sec-ttl" data-i18n="f_lang"></div>
+        <div class="f-opts">
+          <label class="f-opt"><input type="checkbox" checked onchange="filterTutors()"><span class="f-opt-lbl">Latviski</span></label>
+          <label class="f-opt"><input type="checkbox" checked onchange="filterTutors()"><span class="f-opt-lbl" data-i18n="lang_ru"></span></label>
+          <label class="f-opt"><input type="checkbox" onchange="filterTutors()"><span class="f-opt-lbl">English</span></label>
+        </div>
+      </div>
+      <div class="f-sec">
+        <div class="f-sec-ttl" data-i18n="f_format"></div>
+        <div class="f-opts">
+          <label class="f-opt"><input type="checkbox" checked onchange="filterTutors()"><span class="f-opt-lbl" data-i18n="fmt_online"></span></label>
+          <label class="f-opt"><input type="checkbox" checked onchange="filterTutors()"><span class="f-opt-lbl" data-i18n="fmt_offline"></span></label>
+        </div>
+      </div>
+      <div class="f-sec">
+        <div class="f-sec-ttl" data-i18n="f_rating"></div>
+        <div class="f-opts">
+          <label class="f-opt"><input type="radio" name="frat" value="0" checked onchange="filterTutors()"><span class="f-opt-lbl" data-i18n="r_any"></span></label>
+          <label class="f-opt"><input type="radio" name="frat" value="4.5" onchange="filterTutors()"><span class="f-opt-lbl">4.5+</span></label>
+          <label class="f-opt"><input type="radio" name="frat" value="4.8" onchange="filterTutors()"><span class="f-opt-lbl">4.8+</span></label>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="r-head">
+        <div class="r-cnt" id="r-cnt"></div>
+        <select class="r-sort" onchange="sortTutors(this.value)">
+          <option value="rating" data-i18n="sort_rating"></option>
+          <option value="price_asc" data-i18n="sort_price_asc"></option>
+          <option value="price_desc" data-i18n="sort_price_desc"></option>
+        </select>
+      </div>
+      <div class="tlist" id="tutor-list"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ SUBJECTS ══════════════ -->
+<div id="page-subjects" class="page">
+  <div class="subj-hero">
+    <div class="subj-hero-eye" data-i18n="subj_eye"></div>
+    <h1><span class="g" data-i18n="subj_h1a"></span> <em data-i18n="subj_h1b"></em></h1>
+    <p data-i18n="subj_sub"></p>
+    <div class="subj-cats">
+      <button class="s-cat on" onclick="setCat(this,'all')" data-i18n="chip_all"></button>
+      <button class="s-cat" onclick="setCat(this,'school')" data-i18n="cat_school"></button>
+      <button class="s-cat" onclick="setCat(this,'lang')" data-i18n="cat_lang"></button>
+      <button class="s-cat" onclick="setCat(this,'tech')" data-i18n="cat_tech"></button>
+      <button class="s-cat" onclick="setCat(this,'art')" data-i18n="cat_art"></button>
+    </div>
+  </div>
+  <div class="subj-grid" id="subj-grid"></div>
+</div>
+
+<!-- ══════════════ PRICING ══════════════ -->
+<div id="page-pricing" class="page">
+  <div class="price-hero">
+    <div class="price-hero-eye" data-i18n="price_eye"></div>
+    <h1><span class="g" data-i18n="price_h1"></span></h1>
+    <p data-i18n="price_sub"></p>
+    <div class="price-toggle">
+      <button class="pt-btn on" onclick="setPriceTab('student')" data-i18n="for_student"></button>
+      <button class="pt-btn" onclick="setPriceTab('tutor')" data-i18n="for_tutor"></button>
+    </div>
+  </div>
+  <div class="price-grid" id="price-grid"></div>
+  <div class="compare-sec">
+    <div class="compare-ttl" data-i18n="compare_t"></div>
+    <table class="ct" id="compare-tbl"></table>
+  </div>
+  <div class="faq-sec">
+    <div class="faq-eye" data-i18n="faq_eye"></div>
+    <div class="faq-ttl" data-i18n="faq_ttl"></div>
+    <div id="faq-list"></div>
+  </div>
+</div>
+
+<!-- ══════════════ AUTH ══════════════ -->
+<div id="page-auth" class="page">
+  <div class="auth-layout">
+    <div class="auth-left">
+      <div class="auth-left-glow"></div>
+      <h2><em data-i18n="al_em"></em><span class="g" data-i18n="al_h"></span></h2>
+      <p data-i18n="al_p"></p>
+      <div class="feat-list">
+        <div class="feat-item"><div class="feat-ico">🔒</div><div><div class="feat-ttl" data-i18n="f1t"></div><div class="feat-sub" data-i18n="f1s"></div></div></div>
+        <div class="feat-item"><div class="feat-ico">⭐</div><div><div class="feat-ttl" data-i18n="f2t"></div><div class="feat-sub" data-i18n="f2s"></div></div></div>
+        <div class="feat-item"><div class="feat-ico">💬</div><div><div class="feat-ttl" data-i18n="f3t"></div><div class="feat-sub" data-i18n="f3s"></div></div></div>
+        <div class="feat-item"><div class="feat-ico">📅</div><div><div class="feat-ttl" data-i18n="f4t"></div><div class="feat-sub" data-i18n="f4s"></div></div></div>
+      </div>
+      <div class="auth-testim">
+        <div class="testim-txt" data-i18n="testim"></div>
+        <div class="testim-auth"><div class="testim-av">МК</div><div><div class="testim-name">Мария К.</div><div class="testim-role" data-i18n="t_role"></div></div></div>
+      </div>
+    </div>
+    <div class="auth-right">
+      <div class="auth-inner">
+        <div class="auth-tabs" id="auth-tabs-el">
+          <button class="auth-tab on" onclick="switchTab('login')" data-i18n="tab_login"></button>
+          <button class="auth-tab" onclick="switchTab('register')" data-i18n="tab_reg"></button>
+        </div>
+        <!-- LOGIN -->
+        <div id="f-login">
+          <div class="form-ttl" data-i18n="login_h"></div>
+          <div class="form-sub" data-i18n="login_sub"></div>
+          <div class="f-grp"><label class="f-lbl">Email</label><input class="f-inp" id="li-em" type="email" placeholder="you@email.com"><div class="f-err" id="li-em-e" data-i18n="e_email"></div></div>
+          <div class="f-grp"><label class="f-lbl" data-i18n="lbl_pw"></label><span class="forg-lnk" onclick="go('forgot')" data-i18n="forgot_lnk"></span><div class="inp-wr"><input class="f-inp" id="li-pw" type="password" placeholder="••••••••"><button class="tog-pw" onclick="tpw('li-pw',this)">👁</button></div><div class="f-err" id="li-pw-e" data-i18n="e_pw"></div></div>
+          <button class="btn-sub" id="btn-login" onclick="doLogin()"><span class="btn-lbl" data-i18n="btn_login"></span><div class="spinner"></div></button>
+          <div class="auth-sw" data-i18n="no_acc"></div>
+        </div>
+        <!-- REGISTER -->
+        <div id="f-register" style="display:none;">
+          <div class="stepper"><div class="s-dot act" id="sd1">1</div><div class="s-line" id="sl1"></div><div class="s-dot" id="sd2">2</div><div class="s-line" id="sl2"></div><div class="s-dot" id="sd3">3</div></div>
+          <div id="rs1">
+            <div class="form-ttl" data-i18n="who_h"></div><div class="form-sub" data-i18n="who_sub"></div>
+            <div class="role-grid">
+              <div class="role-card" id="rc-s" onclick="pickRole('student')"><div class="role-emoji">🎓</div><div class="role-ttl" data-i18n="role_s"></div><div class="role-sub" data-i18n="role_s_sub"></div></div>
+              <div class="role-card" id="rc-t" onclick="pickRole('tutor')"><div class="role-emoji">📚</div><div class="role-ttl" data-i18n="role_t"></div><div class="role-sub" data-i18n="role_t_sub"></div></div>
+            </div>
+            <button class="btn-sub" id="btn-s1" onclick="goStep(2)" disabled><span class="btn-lbl" data-i18n="btn_cont"></span><div class="spinner"></div></button>
+          </div>
+          <div id="rs2" style="display:none;">
+            <div class="form-ttl" data-i18n="info_h"></div><div class="form-sub" data-i18n="info_sub"></div>
+            <div class="f-row2"><div class="f-grp"><label class="f-lbl" data-i18n="lbl_name"></label><input class="f-inp" id="rn" type="text" placeholder="Иван"><div class="f-err" id="rn-e" data-i18n="e_name"></div></div><div class="f-grp"><label class="f-lbl" data-i18n="lbl_sname"></label><input class="f-inp" id="rsn" type="text" placeholder="Петров"><div class="f-err" id="rsn-e" data-i18n="e_sname"></div></div></div>
+            <div class="f-grp"><label class="f-lbl">Email</label><input class="f-inp" id="rem" type="email" placeholder="you@email.com"><div class="f-err" id="rem-e" data-i18n="e_email"></div></div>
+            <div class="f-grp"><label class="f-lbl" data-i18n="lbl_phone"></label><input class="f-inp" id="rph" type="tel" placeholder="+371 2000 0000"></div>
+            <div id="tutor-ex" style="display:none;"><div class="f-grp"><label class="f-lbl" data-i18n="lbl_subj"></label><input class="f-inp" id="rsubj" type="text" placeholder="Математика, Физика"></div><div class="f-row2"><div class="f-grp"><label class="f-lbl" data-i18n="lbl_exp"></label><input class="f-inp" id="rexp" type="number" min="0" placeholder="3"></div><div class="f-grp"><label class="f-lbl" data-i18n="lbl_price_h"></label><input class="f-inp" id="rprice" type="number" min="5" placeholder="15"></div></div></div>
+            <div style="display:flex;gap:10px;"><button class="btn-back-xs" onclick="goStep(1)">←</button><button class="btn-sub" style="flex:1;margin-bottom:0;" onclick="goStep(3)"><span class="btn-lbl" data-i18n="btn_cont"></span><div class="spinner"></div></button></div>
+          </div>
+          <div id="rs3" style="display:none;">
+            <div class="form-ttl" data-i18n="pw_h"></div><div class="form-sub" data-i18n="pw_sub"></div>
+            <div class="f-grp"><label class="f-lbl" data-i18n="lbl_pw"></label><div class="inp-wr"><input class="f-inp" id="rpw" type="password" placeholder="Минимум 8 символов" oninput="chkPw(this.value)"><button class="tog-pw" onclick="tpw('rpw',this)">👁</button></div><div class="pw-bars"><div class="pw-bar" id="pb1"></div><div class="pw-bar" id="pb2"></div><div class="pw-bar" id="pb3"></div><div class="pw-bar" id="pb4"></div></div><div class="pw-hint" id="pw-hint"></div><div class="f-err" id="rpw-e" data-i18n="e_pw8"></div></div>
+            <div class="f-grp"><label class="f-lbl" data-i18n="lbl_pw2"></label><div class="inp-wr"><input class="f-inp" id="rpw2" type="password" placeholder="••••••••"><button class="tog-pw" onclick="tpw('rpw2',this)">👁</button></div><div class="f-err" id="rpw2-e" data-i18n="e_pw_match"></div></div>
+            <div class="f-check"><input type="checkbox" id="agree"><label for="agree" data-i18n="agree_lbl"></label></div>
+            <div style="display:flex;gap:10px;"><button class="btn-back-xs" onclick="goStep(2)">←</button><button class="btn-sub" id="btn-reg" style="flex:1;margin-bottom:0;" onclick="doRegister()"><span class="btn-lbl" data-i18n="btn_create"></span><div class="spinner"></div></button></div>
+            <div class="auth-sw" style="margin-top:13px;" data-i18n="have_acc"></div>
+          </div>
+        </div>
+        <!-- SUCCESS -->
+        <div id="f-success" style="display:none;" class="suc-box">
+          <div class="suc-ico">✓</div>
+          <div class="suc-ttl" id="suc-h"></div>
+          <div class="suc-sub" id="suc-s"></div>
+          <button class="btn-hero" onclick="go('home')" data-i18n="btn_home"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FORGOT -->
+<div id="page-forgot" class="page">
+  <div class="forgot-wrap">
+    <div class="legal-back" onclick="go('auth');switchTab('login')">← <span data-i18n="back_login"></span></div>
+    <div class="form-ttl" data-i18n="forgot_h"></div>
+    <div class="form-sub" style="font-size:15px;color:var(--muted);margin-bottom:24px;line-height:1.6;" data-i18n="forgot_sub"></div>
+    <div class="f-grp"><label class="f-lbl">Email</label><input class="f-inp" id="forg-em" type="email" placeholder="you@email.com"><div class="f-err" id="forg-e" data-i18n="e_email"></div></div>
+    <button class="btn-sub" id="btn-forg" onclick="doForgot()"><span class="btn-lbl" data-i18n="btn_send"></span><div class="spinner"></div></button>
+    <div class="alert-ok" id="forg-ok" data-i18n="forgot_ok"></div>
+  </div>
+</div>
+
+<!-- TERMS -->
+<div id="page-terms" class="page"><div class="legal-wrap">
+  <div class="legal-back" onclick="go('auth')">← <span data-i18n="back_reg"></span></div>
+  <h1 data-i18n="terms_h"></h1><div class="legal-date" data-i18n="terms_date"></div>
+  <h2 data-i18n="terms_1h"></h2><p data-i18n="terms_1p"></p>
+  <h2 data-i18n="terms_2h"></h2><p data-i18n="terms_2p"></p><ul><li data-i18n="terms_2l1"></li><li data-i18n="terms_2l2"></li><li data-i18n="terms_2l3"></li></ul>
+  <h2 data-i18n="terms_3h"></h2><p data-i18n="terms_3p"></p>
+  <h2 data-i18n="terms_4h"></h2><p data-i18n="terms_4p"></p>
+  <h2 data-i18n="terms_5h"></h2><p data-i18n="terms_5p"></p>
+  <h2 data-i18n="terms_6h"></h2><p>support@nakla.lv</p>
+</div></div>
+
+<!-- PRIVACY -->
+<div id="page-privacy" class="page"><div class="legal-wrap">
+  <div class="legal-back" onclick="go('auth')">← <span data-i18n="back_reg"></span></div>
+  <h1 data-i18n="priv_h"></h1><div class="legal-date" data-i18n="terms_date"></div>
+  <h2 data-i18n="priv_1h"></h2><p data-i18n="priv_1p"></p><ul><li data-i18n="priv_1l1"></li><li data-i18n="priv_1l2"></li><li data-i18n="priv_1l3"></li></ul>
+  <h2 data-i18n="priv_2h"></h2><p data-i18n="priv_2p"></p>
+  <h2 data-i18n="priv_3h"></h2><p data-i18n="priv_3p"></p>
+  <h2 data-i18n="priv_4h"></h2><p data-i18n="priv_4p"></p>
+  <h2 data-i18n="priv_5h"></h2><p>privacy@nakla.lv</p>
+</div></div>
+
+<!-- ABOUT -->
+<div id="page-about-page" class="page"><div class="legal-wrap" style="max-width:820px;">
+  <div class="legal-back" onclick="go('home')">← <span data-i18n="nav_find"></span></div>
+  <h1 data-i18n="about_h"></h1><div class="legal-date" data-i18n="about_sub"></div>
+  <h2 data-i18n="about_1h"></h2><p data-i18n="about_1p"></p>
+  <h2 data-i18n="about_2h"></h2><p data-i18n="about_2p"></p>
+  <h2 data-i18n="about_3h"></h2><p data-i18n="about_3p"></p>
+  <h2 data-i18n="about_4h"></h2><p data-i18n="about_4p"></p>
+  <p style="margin-top:12px;"><a onclick="go('auth');switchTab('register')" style="cursor:pointer;color:var(--green);font-weight:700;" data-i18n="ft_cta"></a></p>
+</div></div>
+
+<!-- CONTACT -->
+<div id="page-contact" class="page">
+  <div class="forgot-wrap" style="max-width:540px;">
+    <div class="legal-back" onclick="go('home')">← <span data-i18n="nav_find"></span></div>
+    <div class="form-ttl" data-i18n="contact_h"></div>
+    <div class="form-sub" style="font-size:15px;color:var(--muted);margin-bottom:24px;line-height:1.6;" data-i18n="contact_sub"></div>
+    <div class="f-grp"><label class="f-lbl" data-i18n="lbl_name"></label><input class="f-inp" id="cnt-n" type="text"></div>
+    <div class="f-grp"><label class="f-lbl">Email</label><input class="f-inp" id="cnt-e" type="email"></div>
+    <div class="f-grp"><label class="f-lbl" data-i18n="contact_msg"></label><textarea class="f-inp" id="cnt-m" rows="5" style="resize:vertical;"></textarea></div>
+    <button class="btn-sub" id="btn-cnt" onclick="doContact()"><span class="btn-lbl" data-i18n="btn_send"></span><div class="spinner"></div></button>
+    <div class="alert-ok" id="cnt-ok" data-i18n="contact_ok"></div>
+  </div>
+</div>
+
+
+<!-- ══════════════ TUTOR PROFILE ══════════════ -->
+<div id="page-profile" class="page">
+  <div class="profile-wrap">
+    <div class="profile-back" onclick="go('find')">← <span data-i18n="back_to_find"></span></div>
+    <div class="profile-header">
+      <div class="profile-av-big" id="prof-av" style="background:linear-gradient(135deg,#3DDB82,#2cb96a)">АК
+        <div class="plan-dot plan-pro" id="prof-plan-dot">★</div>
+      </div>
+      <div>
+        <div class="profile-name-row">
+          <div class="profile-name" id="prof-name">Anna Kalniņa</div>
+          <span class="plan-badge plan-pro" id="prof-plan-badge">Pro</span>
+        </div>
+        <div class="profile-spec" id="prof-spec">Математика · Физика · 8 лет опыта</div>
+        <div class="profile-meta-row">
+          <div class="profile-meta-item">★ <strong id="prof-rating">4.9</strong>&nbsp;<span id="prof-reviews" style="color:var(--muted)">(47 отзывов)</span></div>
+          <div class="profile-meta-item">📍 <strong id="prof-loc">Рига, онлайн</strong></div>
+          <div class="profile-meta-item">🕐 <strong id="prof-resp">Отвечает за 1 час</strong></div>
+        </div>
+        <div class="profile-tags" id="prof-tags"></div>
+      </div>
+      <div class="profile-right">
+        <div><div class="profile-price-big" id="prof-price">15€</div><div class="profile-price-sub" data-i18n="per_l"></div></div>
+        <button class="btn-contact-tutor" onclick="go('messages')" data-i18n="btn_msg_tutor"></button>
+        <button class="btn-book-tutor" onclick="go('auth');switchTab('register')" data-i18n="btn_book"></button>
+      </div>
+    </div>
+    <div class="profile-body">
+      <div>
+        <div class="profile-section">
+          <div class="profile-sec-ttl" data-i18n="prof_about"></div>
+          <div class="profile-about" id="prof-about"></div>
+        </div>
+        <div class="profile-section">
+          <div class="profile-sec-ttl" data-i18n="prof_teaches"></div>
+          <div id="prof-teaches-list" style="display:flex;flex-direction:column;gap:10px;"></div>
+        </div>
+        <div class="profile-section">
+          <div class="profile-sec-ttl" data-i18n="prof_reviews_ttl"></div>
+          <div class="reviews-list" id="prof-reviews-list"></div>
+        </div>
+      </div>
+      <div>
+        <div class="mini-cal" id="prof-mini-cal">
+          <div class="mini-cal-hdr">
+            <button class="mini-cal-nav" onclick="miniCalNav(-1)">‹</button>
+            <div class="mini-cal-month" id="mini-cal-month"></div>
+            <button class="mini-cal-nav" onclick="miniCalNav(1)">›</button>
+          </div>
+          <div class="mini-cal-grid" id="mini-cal-grid"></div>
+        </div>
+        <div class="profile-section">
+          <div class="profile-sec-ttl" data-i18n="prof_info"></div>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <div style="display:flex;justify-content:space-between;font-size:14px;padding:8px 0;border-bottom:1px solid var(--border);"><span style="color:var(--muted)" data-i18n="prof_lessons_done"></span><strong id="prof-cnt">142</strong></div>
+            <div style="display:flex;justify-content:space-between;font-size:14px;padding:8px 0;border-bottom:1px solid var(--border);"><span style="color:var(--muted)" data-i18n="prof_lang"></span><strong id="prof-lang-v">LV · RU</strong></div>
+            <div style="display:flex;justify-content:space-between;font-size:14px;padding:8px 0;"><span style="color:var(--muted)" data-i18n="prof_format"></span><strong id="prof-format-v">Онлайн + Офлайн</strong></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ CALENDAR ══════════════ -->
+<div id="page-calendar" class="page">
+  <div class="cal-page">
+    <div class="cal-header">
+      <div>
+        <div style="font-size:12px;font-weight:700;color:var(--green);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;" data-i18n="cal_eye"></div>
+        <h1 data-i18n="cal_title"></h1>
+      </div>
+      <div style="display:flex;gap:10px;align-items:center;">
+        <div class="cal-view-sw">
+          <button class="cal-view-btn on" onclick="setCalView('month')" data-i18n="cal_month"></button>
+          <button class="cal-view-btn" onclick="setCalView('week')" data-i18n="cal_week"></button>
+        </div>
+        <button class="btn-green" style="padding:9px 18px;font-size:13px;" data-i18n="cal_add_lesson" onclick="addLesson()"></button>
+      </div>
+    </div>
+    <div class="cal-layout">
+      <div class="cal-main">
+        <div class="cal-main-hdr">
+          <button class="cal-main-nav" onclick="calNav(-1)">‹</button>
+          <div class="cal-main-month" id="cal-main-month"></div>
+          <button class="cal-main-nav" onclick="calNav(1)">›</button>
+        </div>
+        <div class="cal-week-row">
+          <div class="cal-week-hdr" data-i18n="wd_mon"></div>
+          <div class="cal-week-hdr" data-i18n="wd_tue"></div>
+          <div class="cal-week-hdr" data-i18n="wd_wed"></div>
+          <div class="cal-week-hdr" data-i18n="wd_thu"></div>
+          <div class="cal-week-hdr" data-i18n="wd_fri"></div>
+          <div class="cal-week-hdr" data-i18n="wd_sat"></div>
+          <div class="cal-week-hdr" data-i18n="wd_sun"></div>
+        </div>
+        <div class="cal-month-grid" id="cal-grid"></div>
+      </div>
+      <div class="cal-sidebar">
+        <div class="cal-upcoming">
+          <div class="cal-up-ttl" data-i18n="cal_upcoming"></div>
+          <div class="cal-up-list" id="cal-up-list"></div>
+        </div>
+        <div class="cal-stats">
+          <div class="cal-up-ttl" data-i18n="cal_stats"></div>
+          <div class="cal-stat-row"><span class="cal-stat-lbl" data-i18n="cal_this_month"></span><span class="cal-stat-val" id="cal-stat-cnt">6</span></div>
+          <div class="cal-stat-row"><span class="cal-stat-lbl" data-i18n="cal_earned"></span><span class="cal-stat-val" id="cal-stat-earn">84€</span></div>
+          <div class="cal-stat-row"><span class="cal-stat-lbl" data-i18n="cal_total"></span><span class="cal-stat-val" id="cal-stat-total">142</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ MESSAGES ══════════════ -->
+<div id="page-messages" class="page">
+  <div class="msg-wrap">
+    <div class="msg-sidebar">
+      <div class="msg-sidebar-hdr">
+        <div class="msg-sidebar-ttl" data-i18n="msg_inbox"></div>
+        <input class="msg-search" type="text" data-i18n-ph="msg_search_ph">
+      </div>
+      <div class="msg-list" id="msg-list"></div>
+    </div>
+    <div class="msg-main" id="msg-main">
+      <div class="msg-empty">
+        <div class="msg-empty-ico">💬</div>
+        <div class="msg-empty-txt" data-i18n="msg_select"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Add Lesson Modal -->
+<div id="modal-add-lesson" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:500;display:none;align-items:center;justify-content:center;">
+  <div style="background:var(--bg2);border:1px solid var(--border2);border-radius:20px;padding:36px;width:100%;max-width:480px;position:relative;animation:fadeUp 0.3s cubic-bezier(.22,1,.36,1) both;">
+    <div style="font-size:20px;font-weight:800;letter-spacing:-0.5px;margin-bottom:6px;" data-i18n="modal_add_lesson_h"></div>
+    <div style="font-size:14px;color:var(--muted);margin-bottom:24px;" data-i18n="modal_add_lesson_sub"></div>
+    <div class="f-grp">
+      <label class="f-lbl" data-i18n="lbl_name"></label>
+      <input class="f-inp" id="al-student" type="text" placeholder="Имя ученика">
+    </div>
+    <div class="f-row2">
+      <div class="f-grp">
+        <label class="f-lbl" data-i18n="modal_date"></label>
+        <input class="f-inp" id="al-date" type="date">
+      </div>
+      <div class="f-grp">
+        <label class="f-lbl" data-i18n="modal_time"></label>
+        <input class="f-inp" id="al-time" type="time" value="10:00">
+      </div>
+    </div>
+    <div class="f-grp">
+      <label class="f-lbl" data-i18n="modal_subject"></label>
+      <select class="f-inp" id="al-subj">
+        <option data-i18n="s_math"></option>
+        <option data-i18n="s_phys"></option>
+        <option data-i18n="s_en"></option>
+        <option data-i18n="s_chem"></option>
+        <option data-i18n="s_prog"></option>
+      </select>
+    </div>
+    <div style="display:flex;gap:10px;margin-top:8px;">
+      <button class="btn-sub" style="margin-bottom:0;" onclick="saveLesson()" data-i18n="modal_save"></button>
+      <button style="background:none;border:1px solid var(--border2);color:var(--muted);padding:14px 20px;border-radius:12px;cursor:pointer;font-family:inherit;font-size:14px;transition:all .18s;" onmouseover="this.style.borderColor='var(--green)'" onmouseout="this.style.borderColor=''" onclick="closeModal()" data-i18n="modal_cancel"></button>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="foot-inner">
+    <div class="foot-logo">Nakl<span>a</span></div>
+    <ul class="foot-links">
+      <li><a onclick="go('find')" data-i18n="nav_find"></a></li>
+      <li><a onclick="go('subjects')" data-i18n="nav_subjects"></a></li>
+      <li><a onclick="go('pricing')" data-i18n="nav_prices"></a></li>
+      <li><a onclick="go('about-page')" data-i18n="nav_about"></a></li>
+      <li><a onclick="go('terms')" data-i18n="foot_terms"></a></li>
+      <li><a onclick="go('privacy')" data-i18n="foot_priv"></a></li>
+      <li><a onclick="go('contact')" data-i18n="foot_contact"></a></li>
+    </ul>
+    <div class="foot-copy">© 2026 Nakla</div>
+  </div>
+</footer>
+<script>
+// ══ i18n ══
+const T={
+ru:{
+  nav_find:'Найти репетитора',nav_subjects:'Предметы',nav_prices:'Цены',nav_about:'О нас',nav_login:'Войти',nav_register:'Стать репетитором',
+  hero_eye:'Платформа репетиторов Балтии',hero_h1a:'Найди репетитора,',hero_h1b:'который реально',hero_h1c:'объяснит',
+  hero_sub:'Накла — платформа для поиска репетиторов в Латвии. Бронируй урок онлайн, оплачивай безопасно, учись у лучших.',
+  hero_cta1:'Найти репетитора →',hero_cta2:'Узнать больше',
+  stat_t:'Репетиторов',stat_s:'Предметов',stat_r:'Средний рейтинг',
+  badge_book:'✓ Урок забронирован',card_spec:'Математика · Физика · 8 лет опыта',
+  per_l:'/урок',btn_book:'Забронировать',s_ru:'Русский',s_math:'Математика',s_en:'Английский',s_lv:'Латышский',s_chem:'Химия',s_prog:'Программирование',s_phys:'Физика',
+  search_t:'Быстрый поиск',search_ph:'Предмет или имя репетитора...',lang_any:'Любой язык',lang_ru:'По-русски',p_any:'Любая цена',p_1:'До 10€',btn_srch:'Найти →',popular:'Популярное:',
+  how_lbl:'Как работает Nakla',how_t:'Три шага до первого урока',
+  s1h:'Найди репетитора',s1p:'Фильтруй по предмету, языку, цене и рейтингу. Читай реальные отзывы учеников.',
+  s2h:'Забронируй время',s2p:'Выбери удобный слот в календаре репетитора — без звонков и переписки.',
+  s3h:'Учись и расти',s3p:'Оплата надёжна через платформу. Деньги у репетитора только после урока.',
+  t_lbl:'Репетиторы',t_title:'Лучшие на платформе',t_all:'Смотреть всех →',
+  tc1s:'Английский · 5 лет опыта',tc2s:'Математика · 10 лет опыта',tc3s:'Химия · Биология · 7 лет',
+  ft_lbl:'Для репетиторов',ft_title:'Зарабатывай,\nа не ищи учеников',ft_desc:'Создай профиль за 10 минут. Nakla приводит учеников — ты просто преподаёшь.',
+  p1:'88% с каждого урока — тебе',p2:'Сам устанавливаешь цену и расписание',p3:'Выплаты автоматически после урока',p4:'Онлайн или офлайн — как удобно',
+  ft_cta:'Зарегистрироваться как репетитор →',
+  calc_t:'Калькулятор дохода',calc_pl:'Цена за урок',calc_ll:'Уроков в месяц',calc_cl:'Комиссия Nakla',calc_rl:'Твой доход в месяц',calc_rs:'после вычета комиссии',calc_g:'Общая сумма',calc_f:'Комиссия (12%)',calc_n:'Тебе на руки',
+  // FIND
+  find_h1a:'Найди своего',find_h1b:'идеального репетитора',find_sub:'Более 200 проверенных репетиторов по всем предметам. Онлайн и в Риге.',
+  fstat1:'<strong>200+</strong> репетиторов',fstat2:'<strong>12</strong> предметов',fstat3:'Средний рейтинг <strong>4.9★</strong>',
+  all_subj:'Все предметы',chip_all:'Все',chip_online:'Только онлайн',chip_top:'Топ рейтинг 4.8+',chip_cheap:'До 15€/урок',
+  f_price:'Цена за урок',f_lang:'Язык обучения',f_format:'Формат',f_rating:'Рейтинг',
+  fmt_online:'Онлайн',fmt_offline:'Офлайн (Рига)',r_any:'Любой рейтинг',
+  sort_rating:'По рейтингу',sort_price_asc:'Цена: по возрастанию',sort_price_desc:'Цена: по убыванию',
+  tr_online:'Онлайн',t_reviews:'отзывов',
+  // SUBJECTS
+  subj_eye:'Предметы',subj_h1a:'Найди репетитора по',subj_h1b:'любому предмету',subj_sub:'12 направлений, более 200 репетиторов. От математики до программирования — выбери эксперта именно по тому, что тебе нужно.',
+  cat_school:'Школьные',cat_lang:'Языки',cat_tech:'Технологии',cat_art:'Творчество',
+  // PRICING
+  price_eye:'Тарифы',price_h1:'Честные цены без скрытых платежей',price_sub:'Для учеников Nakla полностью бесплатна. Репетиторы платят только небольшую комиссию с каждого проведённого урока — никаких абонентских платежей на старте.',
+  for_student:'Для учеников',for_tutor:'Для репетиторов',
+  compare_t:'Сравнение планов',faq_eye:'Частые вопросы',faq_ttl:'Всё, что нужно знать',
+  // AUTH
+  al_em:'Найди своего ',al_h:'идеального репетитора',al_p:'Зарегистрируйся и получи доступ к лучшим репетиторам Латвии.',
+  f1t:'Безопасная оплата',f1s:'Деньги переводятся репетитору только после урока',
+  f2t:'Проверенные отзывы',f2s:'Только реальные оценки от настоящих учеников',
+  f3t:'Чат с репетитором',f3s:'Обсуди план урока до начала занятия',
+  f4t:'Онлайн-бронирование',f4s:'Выбери удобное время без звонков',
+  testim:'"Нашла репетитора по математике за 5 минут. Уже через неделю сдала экзамен на отлично!"',t_role:'Ученица, Рига',
+  tab_login:'Войти',tab_reg:'Регистрация',login_h:'С возвращением! 👋',login_sub:'Войди в свой аккаунт Nakla',
+  lbl_pw:'Пароль',forgot_lnk:'Забыл пароль?',btn_login:'Войти',no_acc:'Нет аккаунта? <a onclick="switchTab(\'register\')">Зарегистрироваться</a>',
+  who_h:'Кто ты?',who_sub:'Выбери свою роль на платформе',role_s:'Ученик',role_s_sub:'Ищу репетитора',role_t:'Репетитор',role_t_sub:'Хочу преподавать',
+  btn_cont:'Продолжить →',info_h:'Расскажи о себе',info_sub:'Основная информация для аккаунта',
+  lbl_name:'Имя',lbl_sname:'Фамилия',lbl_phone:'Телефон',lbl_subj:'Предметы (через запятую)',lbl_exp:'Опыт (лет)',lbl_price_h:'Цена за урок (€)',
+  pw_h:'Создай пароль',pw_sub:'Минимум 8 символов, желательно с цифрами',lbl_pw2:'Повтори пароль',
+  agree_lbl:'Я соглашаюсь с <a onclick="go(\'terms\')">Условиями</a> и <a onclick="go(\'privacy\')">Политикой конфиденциальности</a>',
+  btn_create:'Создать аккаунт',have_acc:'Уже есть аккаунт? <a onclick="switchTab(\'login\')">Войти</a>',btn_home:'На главную →',
+  e_email:'Введи корректный email',e_pw:'Минимум 6 символов',e_name:'Введи имя',e_sname:'Введи фамилию',e_pw8:'Минимум 8 символов',e_pw_match:'Пароли не совпадают',
+  back_login:'Вернуться ко входу',back_reg:'Вернуться',
+  forgot_h:'Восстановление пароля',forgot_sub:'Введи свой email — мы пришлём ссылку для сброса пароля.',btn_send:'Отправить',forgot_ok:'✓ Письмо отправлено! Проверь почтовый ящик.',
+  terms_h:'Условия использования',terms_date:'Обновлено: 1 января 2026 года',
+  terms_1h:'1. Общие положения',terms_1p:'Используя платформу Nakla, вы соглашаетесь с настоящими условиями. Nakla — это онлайн-платформа для поиска частных репетиторов на территории Латвии и Балтии.',
+  terms_2h:'2. Регистрация и аккаунт',terms_2p:'Для использования платформы необходимо создать аккаунт. Вы обязуетесь:',terms_2l1:'Предоставить достоверную информацию при регистрации',terms_2l2:'Хранить пароль в тайне и не передавать доступ третьим лицам',terms_2l3:'Немедленно уведомить нас о несанкционированном доступе к аккаунту',
+  terms_3h:'3. Оплата и комиссия',terms_3p:'Nakla взимает комиссию 12% от стоимости каждого урока. Оплата производится через защищённую систему Stripe. Деньги переводятся репетитору в течение 3–5 рабочих дней после проведения урока.',
+  terms_4h:'4. Отмена и возврат',terms_4p:'Ученик может отменить урок бесплатно не менее чем за 24 часа до начала. При более поздней отмене взимается 50% стоимости. Возврат средств — в течение 5–10 рабочих дней.',
+  terms_5h:'5. Ответственность',terms_5p:'Nakla не несёт ответственности за качество преподавания, однако поддерживает стандарты через систему отзывов и верификацию репетиторов.',
+  terms_6h:'6. Контакты',priv_h:'Политика конфиденциальности',
+  priv_1h:'1. Собираемые данные',priv_1p:'При регистрации мы собираем:',priv_1l1:'Имя, фамилия, email, номер телефона',priv_1l2:'История бронирований и проведённых уроков',priv_1l3:'Платёжные данные (обрабатывает Stripe, мы не храним данные карт)',
+  priv_2h:'2. Использование данных',priv_2p:'Данные используются только для работы платформы. Мы не продаём данные третьим лицам.',
+  priv_3h:'3. Cookies',priv_3p:'Используем cookies для корректной работы сайта и аналитики.',
+  priv_4h:'4. Ваши права',priv_4p:'Вы можете запросить, исправить или удалить свои данные: support@nakla.lv.',
+  priv_5h:'5. Контакты',
+  about_h:'О Nakla',about_sub:'Платформа репетиторов для всей Балтии',
+  about_1h:'Наша миссия',about_1p:'Nakla создана для того, чтобы сделать качественное образование доступным для каждого в Латвии. Мы соединяем учеников с лучшими репетиторами, убирая лишних посредников.',
+  about_2h:'Как мы начали',about_2p:'Основана в 2026 году в Риге. Найти хорошего репетитора в Латвии было сложно — всё держалось на сарафанном радио и Facebook-группах. Мы решили это изменить.',
+  about_3h:'Для учеников',about_3p:'Ищи по предмету, языку и цене. Читай реальные отзывы, смотри расписание, бронируй в один клик. Оплата безопасна — деньги у репетитора только после урока.',
+  about_4h:'Для репетиторов',about_4p:'Создай профиль за 10 минут и начни получать учеников. Сам устанавливаешь цену и расписание. Nakla берёт комиссию 12% — ты получаешь 88% с каждого урока автоматически.',
+  contact_h:'Свяжитесь с нами',contact_sub:'Есть вопрос или предложение? Мы отвечаем в течение 24 часов.',contact_msg:'Сообщение',contact_ok:'✓ Сообщение отправлено! Мы ответим в течение 24 часов.',
+  
+    modal_add_lesson_h:'Добавить урок',modal_add_lesson_sub:'Новое занятие в вашем расписании',modal_date:'Дата',modal_time:'Время',modal_subject:'Предмет',modal_save:'Сохранить',modal_cancel:'Отмена',foot_terms:'Условия',foot_priv:'Конфиденциальность',foot_contact:'Контакты',
+},
+en:{
+  nav_find:'Find a tutor',nav_subjects:'Subjects',nav_prices:'Pricing',nav_about:'About',nav_login:'Log in',nav_register:'Become a tutor',
+  hero_eye:'Baltic tutor platform',hero_h1a:'Find a tutor who',hero_h1b:'actually explains',hero_h1c:'things',
+  hero_sub:'Nakla is the platform for finding private tutors in Latvia. Book online, pay securely, learn from the best.',
+  hero_cta1:'Find a tutor →',hero_cta2:'Learn more',
+  stat_t:'Tutors',stat_s:'Subjects',stat_r:'Average rating',
+  badge_book:'✓ Lesson booked',card_spec:'Maths · Physics · 8 years exp.',
+  per_l:'/lesson',btn_book:'Book',s_ru:'Russian',s_math:'Mathematics',s_en:'English',s_lv:'Latvian',s_chem:'Chemistry',s_prog:'Programming',s_phys:'Physics',
+  search_t:'Quick search',search_ph:'Subject or tutor name...',lang_any:'Any language',lang_ru:'Russian',p_any:'Any price',p_1:'Under 10€',btn_srch:'Search →',popular:'Popular:',
+  how_lbl:'How Nakla works',how_t:'Three steps to your first lesson',
+  s1h:'Find a tutor',s1p:'Filter by subject, language, price and rating. Read real student reviews.',
+  s2h:'Book a slot',s2p:'Pick a time in the tutor\'s calendar — no calls needed.',
+  s3h:'Learn and grow',s3p:'Payment is secure. The tutor gets paid only after the lesson.',
+  t_lbl:'Tutors',t_title:'Top on the platform',t_all:'View all →',
+  tc1s:'English · 5 years',tc2s:'Mathematics · 10 years',tc3s:'Chemistry · Biology · 7 years',
+  ft_lbl:'For tutors',ft_title:'Earn money,\nnot more students to find',ft_desc:'Create your profile in 10 minutes. Nakla brings students to you — you just teach.',
+  p1:'Keep 88% of every lesson',p2:'Set your own price and schedule',p3:'Automatic payouts after each lesson',p4:'Online or in-person — your choice',
+  ft_cta:'Register as a tutor →',
+  calc_t:'Income calculator',calc_pl:'Price per lesson',calc_ll:'Lessons per month',calc_cl:'Nakla commission',calc_rl:'Your monthly income',calc_rs:'after platform commission',calc_g:'Gross revenue',calc_f:'Commission (12%)',calc_n:'Your take-home',
+  find_h1a:'Find your',find_h1b:'perfect tutor',find_sub:'Over 200 verified tutors across all subjects. Online and in Riga.',
+  fstat1:'<strong>200+</strong> tutors',fstat2:'<strong>12</strong> subjects',fstat3:'Average rating <strong>4.9★</strong>',
+  all_subj:'All subjects',chip_all:'All',chip_online:'Online only',chip_top:'Top rated 4.8+',chip_cheap:'Under 15€/lesson',
+  f_price:'Price per lesson',f_lang:'Teaching language',f_format:'Format',f_rating:'Rating',
+  fmt_online:'Online',fmt_offline:'In-person (Riga)',r_any:'Any rating',
+  sort_rating:'By rating',sort_price_asc:'Price: low to high',sort_price_desc:'Price: high to low',
+  tr_online:'Online',t_reviews:'reviews',
+  subj_eye:'Subjects',subj_h1a:'Find a tutor for',subj_h1b:'any subject',subj_sub:'12 categories, over 200 tutors. From mathematics to programming — find an expert for exactly what you need.',
+  cat_school:'School',cat_lang:'Languages',cat_tech:'Technology',cat_art:'Arts',
+  price_eye:'Pricing',price_h1:'Honest pricing, no hidden fees',price_sub:'Nakla is completely free for students. Tutors pay only a small commission per lesson — no upfront subscription.',
+  for_student:'For students',for_tutor:'For tutors',compare_t:'Plan comparison',faq_eye:'FAQ',faq_ttl:'Everything you need to know',
+  al_em:'Find your ',al_h:'perfect tutor',al_p:'Sign up and get access to the best tutors in Latvia.',
+  f1t:'Secure payments',f1s:'Money is released to the tutor only after the lesson',f2t:'Verified reviews',f2s:'Only real ratings from actual students',f3t:'Chat with tutor',f3s:'Discuss the lesson plan before you start',f4t:'Online booking',f4s:'Pick a time without calls or messages',
+  testim:'"Found a maths tutor in 5 minutes. Passed my exam with flying colours a week later!"',t_role:'Student, Riga',
+  tab_login:'Log in',tab_reg:'Sign up',login_h:'Welcome back! 👋',login_sub:'Log into your Nakla account',
+  lbl_pw:'Password',forgot_lnk:'Forgot password?',btn_login:'Log in',no_acc:'No account? <a onclick="switchTab(\'register\')">Sign up</a>',
+  who_h:'Who are you?',who_sub:'Choose your role on the platform',role_s:'Student',role_s_sub:'Looking for a tutor',role_t:'Tutor',role_t_sub:'Want to teach',
+  btn_cont:'Continue →',info_h:'Tell us about yourself',info_sub:'Basic account information',
+  lbl_name:'First name',lbl_sname:'Last name',lbl_phone:'Phone',lbl_subj:'Subjects (comma-separated)',lbl_exp:'Experience (years)',lbl_price_h:'Price per lesson (€)',
+  pw_h:'Create a password',pw_sub:'At least 8 characters, include numbers',lbl_pw2:'Repeat password',
+  agree_lbl:'I agree to the <a onclick="go(\'terms\')">Terms</a> and <a onclick="go(\'privacy\')">Privacy Policy</a>',
+  btn_create:'Create account',have_acc:'Already have an account? <a onclick="switchTab(\'login\')">Log in</a>',btn_home:'Go to homepage →',
+  e_email:'Enter a valid email',e_pw:'At least 6 characters',e_name:'Enter first name',e_sname:'Enter last name',e_pw8:'At least 8 characters',e_pw_match:'Passwords don\'t match',
+  back_login:'Back to login',back_reg:'Back',
+  forgot_h:'Reset your password',forgot_sub:'Enter your email and we\'ll send you a reset link.',btn_send:'Send',forgot_ok:'✓ Email sent! Check your inbox.',
+  terms_h:'Terms of Service',terms_date:'Updated: January 1, 2026',
+  terms_1h:'1. General',terms_1p:'By using Nakla you agree to these terms. Nakla is an online platform for finding private tutors in Latvia.',
+  terms_2h:'2. Account',terms_2p:'You agree to:',terms_2l1:'Provide accurate information',terms_2l2:'Keep your password secure',terms_2l3:'Report any unauthorised access immediately',
+  terms_3h:'3. Payments',terms_3p:'Nakla charges 12% commission per lesson via Stripe. Funds are transferred within 3–5 business days.',
+  terms_4h:'4. Cancellation',terms_4p:'Free cancellation 24h+ before the lesson. Late cancellations incur a 50% fee.',
+  terms_5h:'5. Liability',terms_5p:'Nakla maintains standards through the review and verification system.',
+  terms_6h:'6. Contact',priv_h:'Privacy Policy',
+  priv_1h:'1. Data we collect',priv_1p:'On registration we collect:',priv_1l1:'Name, email, phone number',priv_1l2:'Booking and lesson history',priv_1l3:'Payment data is handled by Stripe — we never store card details',
+  priv_2h:'2. How we use data',priv_2p:'Data is used only to operate the platform. We never sell data to third parties.',
+  priv_3h:'3. Cookies',priv_3p:'We use cookies for platform functionality and analytics.',
+  priv_4h:'4. Your rights',priv_4p:'Request, correct or delete your data at any time: support@nakla.lv.',
+  priv_5h:'5. Contact',
+  about_h:'About Nakla',about_sub:'A tutor platform for the Baltics',
+  about_1h:'Our mission',about_1p:'Nakla was built to make quality education accessible to everyone in Latvia by connecting students directly with the best tutors.',
+  about_2h:'How we started',about_2p:'Founded in 2026 in Riga. Finding a good tutor in Latvia relied entirely on word of mouth and Facebook groups. We decided to change that.',
+  about_3h:'For students',about_3p:'Search by subject, language and price. Read real reviews, check availability and book in one click. Payment is secure — the tutor gets paid only after the lesson.',
+  about_4h:'For tutors',about_4p:'Create a profile in 10 minutes and start receiving students. You set your own price and schedule. Nakla takes 12% — you keep 88% of every lesson automatically.',
+  contact_h:'Contact us',contact_sub:'Have a question or suggestion? We reply within 24 hours.',contact_msg:'Message',contact_ok:'✓ Message sent! We\'ll reply within 24 hours.',
+  
+    modal_add_lesson_h:'Add lesson',modal_add_lesson_sub:'New lesson in your schedule',modal_date:'Date',modal_time:'Time',modal_subject:'Subject',modal_save:'Save',modal_cancel:'Cancel',foot_terms:'Terms',foot_priv:'Privacy',foot_contact:'Contact',
+},
+lv:{
+  nav_find:'Atrast skolotāju',nav_subjects:'Priekšmeti',nav_prices:'Cenas',nav_about:'Par mums',nav_login:'Ieiet',nav_register:'Kļūt par skolotāju',
+  hero_eye:'Baltijas skolotāju platforma',hero_h1a:'Atrodi skolotāju,',hero_h1b:'kurš tiešām',hero_h1c:'paskaidros',
+  hero_sub:'Nakla — platforma privātskolotāju meklēšanai Latvijā. Rezervē tiešsaistē, maksā droši, mācies no labākajiem.',
+  hero_cta1:'Atrast skolotāju →',hero_cta2:'Uzzināt vairāk',
+  stat_t:'Skolotāji',stat_s:'Priekšmeti',stat_r:'Vidējais vērtējums',
+  badge_book:'✓ Nodarbība rezervēta',card_spec:'Matemātika · Fizika · 8 gadi',
+  per_l:'/nod.',btn_book:'Rezervēt',s_ru:'Krieviski',s_math:'Matemātika',s_en:'Angļu valoda',s_lv:'Latviešu valoda',s_chem:'Ķīmija',s_prog:'Programmēšana',s_phys:'Fizika',
+  search_t:'Ātrā meklēšana',search_ph:'Priekšmets vai skolotāja vārds...',lang_any:'Jebkura valoda',lang_ru:'Krieviski',p_any:'Jebkura cena',p_1:'Līdz 10€',btn_srch:'Meklēt →',popular:'Populāri:',
+  how_lbl:'Kā Nakla strādā',how_t:'Trīs soļi līdz pirmajai nodarbībai',
+  s1h:'Atrodi skolotāju',s1p:'Filtrē pēc priekšmeta, valodas un cenas. Lasi īstas atsauksmes.',
+  s2h:'Rezervē laiku',s2p:'Izvēlies laiku skolotāja kalendārā — bez zvaniem.',
+  s3h:'Mācies un augi',s3p:'Nauda skolotājam tikai pēc nodarbības. Droši.',
+  t_lbl:'Skolotāji',t_title:'Labākie platformā',t_all:'Skatīt visus →',
+  tc1s:'Angļu valoda · 5 gadi',tc2s:'Matemātika · 10 gadi',tc3s:'Ķīmija · Bioloģija · 7 gadi',
+  ft_lbl:'Skolotājiem',ft_title:'Pelni,\nnevis meklē skolēnus',ft_desc:'Izveido profilu 10 minūtēs. Nakla piesaista skolēnus — tu vienkārši māci.',
+  p1:'88% no katras nodarbības — tev',p2:'Pats nosaki cenu un grafiku',p3:'Automātiski maksājumi pēc nodarbības',p4:'Tiešsaistē vai klātienē',
+  ft_cta:'Reģistrēties kā skolotājs →',
+  calc_t:'Ienākumu kalkulators',calc_pl:'Cena par nodarbību',calc_ll:'Nodarbības mēnesī',calc_cl:'Nakla komisija',calc_rl:'Tavs ienākums mēnesī',calc_rs:'pēc komisijas',calc_g:'Kopējā summa',calc_f:'Komisija (12%)',calc_n:'Tev uz rokām',
+  find_h1a:'Atrodi savu',find_h1b:'ideālo skolotāju',find_sub:'Vairāk nekā 200 pārbaudītu skolotāju visiem priekšmetiem. Tiešsaistē un Rīgā.',
+  fstat1:'<strong>200+</strong> skolotāji',fstat2:'<strong>12</strong> priekšmeti',fstat3:'Vidējais vērtējums <strong>4.9★</strong>',
+  all_subj:'Visi priekšmeti',chip_all:'Visi',chip_online:'Tikai tiešsaistē',chip_top:'Augsts vērtējums 4.8+',chip_cheap:'Līdz 15€/nod.',
+  f_price:'Cena par nodarbību',f_lang:'Mācību valoda',f_format:'Formāts',f_rating:'Vērtējums',
+  fmt_online:'Tiešsaistē',fmt_offline:'Klātienē (Rīga)',r_any:'Jebkurš vērtējums',
+  sort_rating:'Pēc vērtējuma',sort_price_asc:'Cena: augošā',sort_price_desc:'Cena: dilstošā',
+  tr_online:'Tiešsaistē',t_reviews:'atsauksmes',
+  subj_eye:'Priekšmeti',subj_h1a:'Atrodi skolotāju par',subj_h1b:'jebkuru priekšmetu',subj_sub:'12 virzieni, vairāk nekā 200 skolotāju. No matemātikas līdz programmēšanai.',
+  cat_school:'Skola',cat_lang:'Valodas',cat_tech:'Tehnoloģijas',cat_art:'Māksla',
+  price_eye:'Tarifi',price_h1:'Godīgas cenas bez slēptajām maksām',price_sub:'Nakla ir pilnīgi bezmaksas skolēniem. Skolotāji maksā tikai komisiju no katras nodarbības.',
+  for_student:'Skolēniem',for_tutor:'Skolotājiem',compare_t:'Plānu salīdzinājums',faq_eye:'Biežie jautājumi',faq_ttl:'Viss, kas jāzina',
+  al_em:'Atrodi savu ',al_h:'ideālo skolotāju',al_p:'Reģistrējies un saņem pieeju labākajiem Latvijas skolotājiem.',
+  f1t:'Droši maksājumi',f1s:'Nauda pārskaitīta tikai pēc nodarbības',f2t:'Pārbaudītas atsauksmes',f2s:'Tikai īstas atsauksmes no skolēniem',f3t:'Čats ar skolotāju',f3s:'Pārrunā plānu pirms nodarbības',f4t:'Tiešsaistes rezervācija',f4s:'Izvēlies laiku bez zvaniem',
+  testim:'"Atradu matemātikas skolotāju 5 minūtēs. Pēc nedēļas nokārtoju eksāmenu!"',t_role:'Skolniece, Rīga',
+  tab_login:'Ieiet',tab_reg:'Reģistrācija',login_h:'Laipni lūdzam! 👋',login_sub:'Ienāc savā Nakla kontā',
+  lbl_pw:'Parole',forgot_lnk:'Aizmirsi paroli?',btn_login:'Ieiet',no_acc:'Nav konta? <a onclick="switchTab(\'register\')">Reģistrēties</a>',
+  who_h:'Kas tu esi?',who_sub:'Izvēlies savu lomu platformā',role_s:'Skolēns',role_s_sub:'Meklēju skolotāju',role_t:'Skolotājs',role_t_sub:'Gribu mācīt',
+  btn_cont:'Turpināt →',info_h:'Pastāsti par sevi',info_sub:'Pamatinformācija kontam',
+  lbl_name:'Vārds',lbl_sname:'Uzvārds',lbl_phone:'Tālrunis',lbl_subj:'Priekšmeti (ar komatu)',lbl_exp:'Pieredze (gadi)',lbl_price_h:'Cena par nodarbību (€)',
+  pw_h:'Izveido paroli',pw_sub:'Vismaz 8 simboli, ieteicams ar cipariem',lbl_pw2:'Atkārtojiet paroli',
+  agree_lbl:'Piekrītu <a onclick="go(\'terms\')">Noteikumiem</a> un <a onclick="go(\'privacy\')">Privātumam</a>',
+  btn_create:'Izveidot kontu',have_acc:'Jau ir konts? <a onclick="switchTab(\'login\')">Ieiet</a>',btn_home:'Uz sākumlapu →',
+  e_email:'Ievadi pareizu e-pastu',e_pw:'Vismaz 6 simboli',e_name:'Ievadi vārdu',e_sname:'Ievadi uzvārdu',e_pw8:'Vismaz 8 simboli',e_pw_match:'Paroles nesakrīt',
+  back_login:'Atpakaļ uz ieiet',back_reg:'Atpakaļ',
+  forgot_h:'Paroles atjaunošana',forgot_sub:'Ievadi savu e-pastu — nosūtīsim saiti paroles maiņai.',btn_send:'Nosūtīt',forgot_ok:'✓ Nosūtīts! Pārbaudi pastu.',
+  terms_h:'Lietošanas noteikumi',terms_date:'Atjaunots: 2026. gada 1. janvāris',
+  terms_1h:'1. Vispārīgi',terms_1p:'Izmantojot Nakla, piekrītat šiem noteikumiem.',
+  terms_2h:'2. Konts',terms_2p:'Jūs apņematies:',terms_2l1:'Sniegt patiesu informāciju',terms_2l2:'Glabāt paroli slepenībā',terms_2l3:'Ziņot par neatļautu piekļuvi',
+  terms_3h:'3. Maksājumi',terms_3p:'Nakla iekasē 12% komisiju caur Stripe. Nauda tiek pārskaitīta 3–5 darba dienu laikā.',
+  terms_4h:'4. Atcelšana',terms_4p:'Bezmaksas atcelšana 24h iepriekš. Vēlāk — 50% maksa.',
+  terms_5h:'5. Atbildība',terms_5p:'Nakla uztur standartus caur atsauksmju sistēmu.',
+  terms_6h:'6. Kontakti',priv_h:'Privātuma politika',
+  priv_1h:'1. Kādus datus vācam',priv_1p:'Reģistrējoties vācam:',priv_1l1:'Vārds, e-pasts, tālrunis',priv_1l2:'Rezervāciju vēsture',priv_1l3:'Maksājumu dati — apstrādā Stripe',
+  priv_2h:'2. Datu izmantošana',priv_2p:'Dati tikai platformas darbībai. Nepārdodam trešajām pusēm.',
+  priv_3h:'3. Sīkdatnes',priv_3p:'Izmantojam sīkdatnes platformas darbībai.',
+  priv_4h:'4. Jūsu tiesības',priv_4p:'Rakstiet: support@nakla.lv',priv_5h:'5. Kontakti',
+  about_h:'Par Nakla',about_sub:'Skolotāju platforma visai Baltijai',
+  about_1h:'Mūsu misija',about_1p:'Nakla ir radīta, lai padarītu kvalitatīvu izglītību pieejamu ikvienam Latvijā.',
+  about_2h:'Kā sākām',about_2p:'Dibināta 2026. gadā Rīgā. Skolotāju atrašana Latvijā balstījās uz ieteikumiem un Facebook grupām. Mēs nolēmām to mainīt.',
+  about_3h:'Skolēniem',about_3p:'Meklē pēc priekšmeta un valodas. Lasi atsauksmes, rezervē ar vienu klikšķi.',
+  about_4h:'Skolotājiem',about_4p:'Profils 10 minūtēs. Nakla ņem 12% komisiju — tu saņem 88% automātiski.',
+  contact_h:'Sazinies ar mums',contact_sub:'Ir jautājums? Atbildam 24 stundu laikā.',contact_msg:'Ziņojums',contact_ok:'✓ Ziņojums nosūtīts!',
+  
+    modal_add_lesson_h:'Pievienot nodarbību',modal_add_lesson_sub:'Jauna nodarbība jūsu grafikā',modal_date:'Datums',modal_time:'Laiks',modal_subject:'Priekšmets',modal_save:'Saglabāt',modal_cancel:'Atcelt',foot_terms:'Noteikumi',foot_priv:'Privātums',foot_contact:'Kontakti',
+}};
+
+// ══ DATA ══
+const TUTORS=[
+  {av:'АК',bg:'linear-gradient(135deg,#3DDB82,#2cb96a)',name:'Anna Kalniņa',
+   spec:{ru:'Математика · Физика',en:'Mathematics · Physics',lv:'Matemātika · Fizika'},
+   exp:{ru:'8 лет опыта',en:'8 years exp.',lv:'8 gadi pieredzes'},
+   price:15,rating:4.9,reviews:47,online:true,
+   subjs:['math','phys'],langs:['LV','RU'],
+   tags:[['tag-blue','s_math'],['tag-pink','s_phys'],['tag-yel','LV'],['tag-cyan','s_ru']],
+   about:{ru:'Опытный репетитор. Готовлю к централизованным экзаменам. Индивидуальный подход к каждому ученику.',en:'Experienced tutor. I help students prepare for centralised exams with an individual approach.',lv:'Gatavošanās centralizētajiem eksāmeniem. Individuāla pieeja.'}},
+  {av:'МР',bg:'linear-gradient(135deg,#78aaff,#4470dd)',name:'Maris Rozentāls',
+   spec:{ru:'Английский язык',en:'English Language',lv:'Angļu valoda'},
+   exp:{ru:'5 лет опыта',en:'5 years exp.',lv:'5 gadi pieredzes'},
+   price:12,rating:4.8,reviews:32,online:true,
+   subjs:['en'],langs:['LV','RU','EN'],
+   tags:[['tag-pur','EN'],['tag-yel','LV'],['tag-cyan','s_ru']],
+   about:{ru:'Помогаю с произношением, грамматикой, IELTS и TOEFL. Разговорный английский с нуля.',en:'Help with pronunciation, grammar, IELTS and TOEFL. Conversational English from scratch.',lv:'Palīdzu ar izrunu, gramatiku, IELTS un TOEFL.'}},
+  {av:'ЛБ',bg:'linear-gradient(135deg,#ff78aa,#d04080)',name:'Līga Bērziņa',
+   spec:{ru:'Математика',en:'Mathematics',lv:'Matemātika'},
+   exp:{ru:'10 лет опыта',en:'10 years exp.',lv:'10 gadi pieredzes'},
+   price:18,rating:5.0,reviews:61,online:false,
+   subjs:['math'],langs:['LV'],
+   tags:[['tag-blue','s_math'],['tag-yel','LV']],
+   about:{ru:'Учитель математики в школе. Работаю со школьниками всех классов, готовлю к ЦЭ.',en:'School maths teacher. Work with students of all ages, exam preparation.',lv:'Matemātikas skolotāja. Strādāju ar skolēniem, gatavošanās eksāmeniem.'}},
+  {av:'КС',bg:'linear-gradient(135deg,#ffa878,#e06030)',name:'Kristīna Siļiņa',
+   spec:{ru:'Химия · Биология',en:'Chemistry · Biology',lv:'Ķīmija · Bioloģija'},
+   exp:{ru:'7 лет опыта',en:'7 years exp.',lv:'7 gadi pieredzes'},
+   price:14,rating:4.9,reviews:28,online:true,
+   subjs:['chem'],langs:['LV','RU'],
+   tags:[['tag-ora','s_chem'],['tag-cyan','s_ru'],['tag-yel','LV']],
+   about:{ru:'Химия и биология с нуля. Подготовка к олимпиадам и централизованным экзаменам.',en:'Chemistry and biology from scratch. Olympiad and exam preparation.',lv:'Ķīmija un bioloģija no nulles. Gatavošanās olimpiādēm.'}},
+  {av:'ДМ',bg:'linear-gradient(135deg,#d078ff,#9040cc)',name:'Dmitrijs Melnikovs',
+   spec:{ru:'Программирование · Python · JS',en:'Programming · Python · JS',lv:'Programmēšana · Python · JS'},
+   exp:{ru:'4 года опыта',en:'4 years exp.',lv:'4 gadi pieredzes'},
+   price:20,rating:4.7,reviews:19,online:true,
+   subjs:['prog'],langs:['RU','EN'],
+   tags:[['tag-grn','s_prog'],['tag-cyan','s_ru'],['tag-pur','EN']],
+   about:{ru:'IT-разработчик. Учу программированию с нуля: Python, HTML/CSS, алгоритмы, веб.',en:'IT developer. Teach programming from scratch: Python, HTML/CSS, algorithms, web.',lv:'IT izstrādātājs. Mācu programmēšanu no nulles: Python, HTML/CSS.'}},
+];
+
+const SUBJECTS=[
+  {ico:'📐',clr:'#78aaff',cat:'school',
+   name:{ru:'Математика',en:'Mathematics',lv:'Matemātika'},
+   desc:{ru:'Алгебра, геометрия, математический анализ, статистика. Подготовка к ЦЭ и олимпиадам. Все уровни — от 5-го класса до университета.',en:'Algebra, geometry, calculus, statistics. Exam and olympiad preparation. All levels from grade 5 to university.',lv:'Algebra, ģeometrija, analīze, statistika. CIE un olimpiādes. Visi līmeņi.'},
+   topics:{ru:['Алгебра','Геометрия','Матанализ','Статистика','ЦЭ'],en:['Algebra','Geometry','Calculus','Statistics','Exam prep'],lv:['Algebra','Ģeometrija','Analīze','Statistika','CIE']},
+   count:38,from:10},
+  {ico:'🗣️',clr:'#d078ff',cat:'lang',
+   name:{ru:'Английский',en:'English',lv:'Angļu valoda'},
+   desc:{ru:'Разговорный английский, грамматика, произношение, IELTS, TOEFL, бизнес-английский. Все уровни от A1.',en:'Speaking, grammar, pronunciation, IELTS, TOEFL, Business English. All levels from A1.',lv:'Sarunvaloda, gramatika, izruna, IELTS, TOEFL. Visi līmeņi no A1.'},
+   topics:{ru:['Разговорный','Грамматика','IELTS','TOEFL','Бизнес'],en:['Speaking','Grammar','IELTS','TOEFL','Business'],lv:['Sarunvaloda','Gramatika','IELTS','TOEFL','Bizness']},
+   count:45,from:8},
+  {ico:'🇱🇻',clr:'#ffdd78',cat:'lang',
+   name:{ru:'Латышский',en:'Latvian',lv:'Latviešu valoda'},
+   desc:{ru:'Латышский язык для начинающих и продвинутых. Подготовка к государственному языковому экзамену. Разговорный и письменный.',en:'Latvian for beginners and advanced. State language exam preparation. Speaking and writing.',lv:'Latviešu valoda iesācējiem un pieredzējušiem. Valsts eksāmens. Sarunvaloda un rakstība.'},
+   topics:{ru:['Начинающим','Грамматика','Госэкзамен','Разговорный','Письмо'],en:['Beginners','Grammar','State exam','Speaking','Writing'],lv:['Iesācējiem','Gramatika','Valsts eksāmens','Sarunvaloda','Rakstība']},
+   count:22,from:9},
+  {ico:'⚗️',clr:'#ffa878',cat:'school',
+   name:{ru:'Химия',en:'Chemistry',lv:'Ķīmija'},
+   desc:{ru:'Органическая и неорганическая химия. Подготовка к олимпиадам, ЦЭ и вступительным экзаменам в университет.',en:'Organic and inorganic chemistry. Olympiad, exam and university entrance preparation.',lv:'Organiskā un neorganiskā ķīmija. Olimpiādes, CIE un universitātes uzņemšana.'},
+   topics:{ru:['Органика','Неорганика','Олимпиада','ЦЭ','Лабораторные'],en:['Organic','Inorganic','Olympiad','Exam','Lab work'],lv:['Organiskā','Neorganiskā','Olimpiāde','CIE','Laboratorijas']},
+   count:18,from:11},
+  {ico:'💻',clr:'#3DDB82',cat:'tech',
+   name:{ru:'Программирование',en:'Programming',lv:'Programmēšana'},
+   desc:{ru:'Python, JavaScript, HTML/CSS, веб-разработка, алгоритмы и структуры данных. Для начинающих и продвинутых.',en:'Python, JavaScript, HTML/CSS, web development, algorithms and data structures. Beginners to advanced.',lv:'Python, JavaScript, HTML/CSS, tīmekļa izstrāde, algoritmi. Iesācējiem un pieredzējušiem.'},
+   topics:{ru:['Python','JavaScript','HTML/CSS','Алгоритмы','Веб-разработка'],en:['Python','JavaScript','HTML/CSS','Algorithms','Web dev'],lv:['Python','JavaScript','HTML/CSS','Algoritmi','Tīmekļa izstrāde']},
+   count:14,from:15},
+  {ico:'🔬',clr:'#ff78aa',cat:'school',
+   name:{ru:'Физика',en:'Physics',lv:'Fizika'},
+   desc:{ru:'Механика, термодинамика, электродинамика, оптика, ядерная физика. Подготовка к ЦЭ и олимпиадам.',en:'Mechanics, thermodynamics, electrodynamics, optics, nuclear physics. Exam and olympiad prep.',lv:'Mehānika, termodinamika, elektrodinamika, optika. CIE un olimpiādes.'},
+   topics:{ru:['Механика','Термодинамика','Электродинамика','Оптика','ЦЭ'],en:['Mechanics','Thermo','Electrodynamics','Optics','Exam'],lv:['Mehānika','Termodinamika','Elektrodinamika','Optika','CIE']},
+   count:21,from:12},
+];
+
+// ══ LANG ══
+let lang='ru';
+function setLang(l){
+  lang=l;
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.textContent===l.toUpperCase()));
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const k=el.getAttribute('data-i18n');
+    if(T[l][k]!=null) el.innerHTML=T[l][k];
+  });
+  document.querySelectorAll('[data-i18n-ph]').forEach(el=>{
+    const k=el.getAttribute('data-i18n-ph');
+    if(T[l][k]!=null) el.placeholder=T[l][k];
+  });
+  document.documentElement.lang=l;
+  cu();
+  const cur=document.querySelector('.page.active');
+  if(cur){
+    const id=cur.id;
+    if(id==='page-find') buildTutors();
+    if(id==='page-subjects') buildSubjects();
+    if(id==='page-pricing') buildPricing();
+  }
+}
+
+// ══ ROUTING ══
+const NAV={'find':'nl-find','subjects':'nl-subj','pricing':'nl-price','about-page':'nl-about'};
+function _goBase(name){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  const pg=document.getElementById('page-'+name);
+  if(pg) pg.classList.add('active');
+  document.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('act'));
+  if(NAV[name]) document.getElementById(NAV[name]).classList.add('act');
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(name==='find') buildTutorsWithProfile();
+  if(name==='subjects') buildSubjects();
+  if(name==='pricing') buildPricing();
+}
+
+// ══ CALCULATOR ══
+function cu(){
+  const p=+document.getElementById('cp').value, l=+document.getElementById('cl').value;
+  const g=p*l, f=Math.round(g*0.12), n=g-f;
+  document.getElementById('cpv').textContent=p+'€';
+  document.getElementById('clv').textContent=l;
+  document.getElementById('cr').textContent=n+'€';
+  document.getElementById('cg').textContent=g+'€';
+  document.getElementById('cf').textContent='−'+f+'€';
+  document.getElementById('cn').textContent=n+'€';
+}
+
+// ══ FIND TUTORS ══
+let activeChip='all', tutorSort='rating';
+function setChip(el,v){
+  document.querySelectorAll('.fchip').forEach(c=>c.classList.remove('on'));
+  el.classList.add('on'); activeChip=v; filterTutors();
+}
+function sortTutors(v){ tutorSort=v; filterTutors(); }
+
+function filterTutors(){
+  const t=T[lang];
+  const q=document.getElementById('find-q').value.toLowerCase();
+  const subj=document.getElementById('find-subj').value;
+  const maxP=+document.getElementById('f-price-r').value;
+  const minR=+document.querySelector('input[name="frat"]:checked').value;
+  let filtered=[...TUTORS];
+  if(q) filtered=filtered.filter(tr=>tr.name.toLowerCase().includes(q)||tr.spec[lang].toLowerCase().includes(q));
+  if(subj) filtered=filtered.filter(tr=>tr.subjs.includes(subj));
+  if(activeChip==='online') filtered=filtered.filter(tr=>tr.online);
+  if(activeChip==='top') filtered=filtered.filter(tr=>tr.rating>=4.8);
+  if(activeChip==='cheap') filtered=filtered.filter(tr=>tr.price<=15);
+  filtered=filtered.filter(tr=>tr.price<=maxP);
+  if(minR>0) filtered=filtered.filter(tr=>tr.rating>=minR);
+  if(tutorSort==='rating') filtered.sort((a,b)=>b.rating-a.rating);
+  if(tutorSort==='price_asc') filtered.sort((a,b)=>a.price-b.price);
+  if(tutorSort==='price_desc') filtered.sort((a,b)=>b.price-a.price);
+  renderTutors(filtered);
+}
+
+function renderTutors(list){
+  const t=T[lang];
+  const tagMap={s_math:t.s_math,s_phys:t.s_phys,s_en:t.s_en,s_lv:t.s_lv,s_chem:t.s_chem,s_prog:t.s_prog,s_ru:t.s_ru,LV:'Latviski',EN:'English',RU:t.s_ru||'Русский'};
+  document.getElementById('r-cnt').textContent=`${list.length} ${lang==='ru'?'репетиторов':lang==='lv'?'skolotāji':'tutors'}`;
+  document.getElementById('tutor-list').innerHTML=list.map((tr,i)=>`
+    <div class="trow ani" style="animation-delay:${i*0.07}s" onclick="openProfile(0)">
+      <div class="t-av" style="background:${tr.bg}">${tr.av}</div>
+      <div>
+        <div style="display:flex;align-items:center;flex-wrap:wrap;gap:6px;margin-bottom:4px;">
+          <div class="t-name">${tr.name}</div>
+          ${tr.online?`<span class="t-online">${t.tr_online||'Online'}</span>`:''}
+        </div>
+        <div class="t-sub">${tr.spec[lang]} · ${tr.exp[lang]}</div>
+        <div class="t-tags">${tr.tags.map(([c,k])=>`<span class="tag ${c}">${tagMap[k]||k}</span>`).join('')}</div>
+        <div class="t-about">${tr.about[lang]}</div>
+      </div>
+      <div class="t-right">
+        <div><div class="t-price">${tr.price}€</div><div class="t-price-sub">${t.per_l}</div></div>
+        <div><div class="t-stars">★ ${tr.rating}</div><div class="t-revs">${tr.reviews} ${t.t_reviews||'reviews'}</div></div>
+        <button class="btn-book-row">${t.btn_book}</button>
+      </div>
+    </div>`).join('');
+}
+function buildTutors(){ filterTutors(); }
+
+// ══ SUBJECTS ══
+let activeCat='all';
+function setCat(el,v){
+  document.querySelectorAll('.s-cat').forEach(c=>c.classList.remove('on'));
+  el.classList.add('on'); activeCat=v; buildSubjects();
+}
+function hexRgb(h){const r=parseInt(h.slice(1,3),16),g=parseInt(h.slice(3,5),16),b=parseInt(h.slice(5,7),16);return r+','+g+','+b;}
+function buildSubjects(){
+  const t=T[lang];
+  const list=activeCat==='all'?SUBJECTS:SUBJECTS.filter(s=>s.cat===activeCat);
+  document.getElementById('subj-grid').innerHTML=list.map((s,i)=>`
+    <div class="s-card ani" style="border-color:rgba(${hexRgb(s.clr)},0.18);animation-delay:${i*0.06}s" onclick="go('find')">
+      <div class="s-card-top-bar" style="background:${s.clr};"></div>
+      <div class="s-ico">${s.ico}</div>
+      <div class="s-name" style="color:${s.clr}">${s.name[lang]}</div>
+      <div class="s-desc">${s.desc[lang]}</div>
+      <div class="s-topics">${s.topics[lang].map(tp=>`<span class="s-topic">${tp}</span>`).join('')}</div>
+      <div class="s-meta">
+        <span class="s-cnt">${s.count} ${lang==='ru'?'репетиторов':lang==='lv'?'skolotāji':'tutors'}</span>
+        <span class="s-from" style="color:${s.clr}">${lang==='ru'?'от':lang==='lv'?'no':'from'} ${s.from}€</span>
+      </div>
+    </div>`).join('');
+}
+
+// ══ PRICING ══
+let priceTab='student';
+function setPriceTab(tab){
+  priceTab=tab;
+  document.querySelectorAll('.pt-btn').forEach((b,i)=>b.classList.toggle('on',(i===0&&tab==='student')||(i===1&&tab==='tutor')));
+  buildPricing();
+}
+function buildPricing(){
+  const t=T[lang]; const isT=priceTab==='tutor';
+
+  // ── STUDENT TAB: always free ──
+  if(!isT){
+    document.getElementById('price-grid').innerHTML=
+      '<div style="grid-column:1/-1;text-align:center;padding:0 0 40px;">'
+      +'<div style="font-size:56px;font-weight:900;color:var(--green);letter-spacing:-2px;margin-bottom:10px;">0€</div>'
+      +'<div style="font-size:22px;font-weight:800;margin-bottom:12px;">'
+      +{ru:'Для учеников — всегда бесплатно',en:'For students — always free',lv:'Skolēniem — vienmēr bezmaksas'}[lang]
+      +'</div><div style="font-size:16px;color:var(--muted);max-width:500px;margin:0 auto 40px;line-height:1.7;">'
+      +{ru:'Поиск, бронирование и оплата уроков на Nakla полностью бесплатны для учеников. Никаких скрытых платежей.',
+        en:'Searching, booking and paying for lessons on Nakla is completely free for students. No hidden fees ever.',
+        lv:'Meklēšana, rezervācija un apmaksa Nakla ir pilnīgi bezmaksas skolēniem. Nav slēpto maksājumu.'}[lang]
+      +'</div></div>'
+      +[
+        {ico:'🔍',clr:'#3DDB82',ttl:{ru:'Найди репетитора',en:'Find a tutor',lv:'Atrast skolotāju'},desc:{ru:'Фильтруй по предмету, языку и цене. Читай реальные отзывы.',en:'Filter by subject, language and price. Read real reviews.',lv:'Filtrē pēc priekšmeta, valodas un cenas.'},feats:[{ru:'Поиск и фильтры',en:'Search & filters',lv:'Meklēšana un filtri'},{ru:'Рейтинги и отзывы',en:'Ratings & reviews',lv:'Vērtējumi un atsauksmes'},{ru:'Просмотр профилей бесплатно',en:'View profiles for free',lv:'Skatīt profilus bez maksas'}]},
+        {ico:'📅',clr:'#78aaff',ttl:{ru:'Забронируй урок',en:'Book a lesson',lv:'Rezervē nodarbību'},desc:{ru:'Выбери время в расписании и бронируй в один клик.',en:'Pick a slot in the calendar and book in one click.',lv:'Izvēlies laiku un rezervē ar vienu klikšķi.'},feats:[{ru:'Онлайн-календарь',en:'Online calendar',lv:'Tiešsaistes kalendārs'},{ru:'Мгновенное подтверждение',en:'Instant confirmation',lv:'Tūlītējs apstiprinājums'},{ru:'Напоминания об уроке',en:'Lesson reminders',lv:'Atgādinājumi'}]},
+        {ico:'🔒',clr:'#ffa878',ttl:{ru:'Платёж защищён',en:'Secure payment',lv:'Droši maksājumi'},desc:{ru:'Деньги у репетитора только после урока. Возврат при отмене.',en:'Funds released to tutor only after the lesson. Refund on cancellation.',lv:'Nauda skolotājam tikai pēc nodarbības. Atmaksājums atceļot.'},feats:[{ru:'Оплата через Stripe',en:'Stripe payments',lv:'Stripe maksājumi'},{ru:'Возврат при отмене за 24ч',en:'Refund on 24h cancellation',lv:'Atmaksājums 24h laikā'},{ru:'Вся история платежей',en:'Full payment history',lv:'Pilna maksājumu vēsture'}]},
+      ].map(c=>'<div class="p-card" style="border-color:rgba(61,219,130,0.12);">'
+        +'<div style="font-size:40px;margin-bottom:14px;">'+c.ico+'</div>'
+        +'<div style="font-size:16px;font-weight:800;color:'+c.clr+';margin-bottom:8px;">'+c.ttl[lang]+'</div>'
+        +'<div class="p-desc">'+c.desc[lang]+'</div>'
+        +'<ul class="p-feats">'+c.feats.map(f=>'<li><span class="p-y">✓</span>'+(typeof f==='object'?f[lang]:f)+'</li>').join('')+'</ul>'
+        +'</div>').join('');
+    document.getElementById('compare-tbl').closest('.compare-sec').style.display='none';
+    document.getElementById('faq-list').innerHTML='';
+    return;
+  }
+
+  // ── TUTOR TAB ──
+  document.getElementById('compare-tbl').closest('.compare-sec').style.display='';
+  const plans=[
+    {plan:{ru:'Старт',en:'Starter',lv:'Sākums'},badge:null,amt:'0€',per:{ru:'бесплатно',en:'free',lv:'bezmaksas'},
+     desc:{ru:'Создай профиль и начни получать учеников уже сегодня.',en:'Create your profile and start getting students today.',lv:'Izveido profilu un sāc saņemt skolēnus šodien.'},
+     feats:[
+       {y:1,t:{ru:'Профиль репетитора',en:'Tutor profile',lv:'Skolotāja profils'}},
+       {y:1,t:{ru:'Онлайн-бронирование',en:'Online booking',lv:'Rezervācija'}},
+       {y:1,t:{ru:'Комиссия 12% с урока',en:'12% commission/lesson',lv:'Komisija 12%'}},
+       {y:0,t:{ru:'Приоритет в результатах',en:'Search priority',lv:'Prioritāte meklēšanā'}},
+       {y:0,t:{ru:'Расширенная аналитика',en:'Analytics dashboard',lv:'Analītika'}},
+     ],btn:{ru:'Зарегистрироваться',en:'Sign up',lv:'Reģistrēties'},ghost:1},
+    {plan:{ru:'Про',en:'Pro',lv:'Pro'},badge:{ru:'Популярное',en:'Most popular',lv:'Populārākais'},amt:'9€',per:{ru:'/мес',en:'/mo',lv:'/mēn'},
+     desc:{ru:'Больше учеников, приоритет в поиске, сниженная комиссия.',en:'More students, search priority and lower commission.',lv:'Vairāk skolēnu, prioritāte un zemāka komisija.'},
+     feats:[
+       {y:1,t:{ru:'Приоритет в результатах',en:'Search priority',lv:'Prioritāte meklēšanā'}},
+       {y:1,t:{ru:'Комиссия снижена до 8%',en:'Commission reduced to 8%',lv:'Komisija 8%'}},
+       {y:1,t:{ru:'Значок "Про репетитор"',en:'"Pro tutor" badge',lv:'"Pro" nozīme'}},
+       {y:1,t:{ru:'Базовая аналитика',en:'Basic analytics',lv:'Pamata analītika'}},
+       {y:0,t:{ru:'Продвижение на главной',en:'Homepage promotion',lv:'Reklāma sākumlapā'}},
+     ],btn:{ru:'Попробовать 7 дней бесплатно',en:'Try free for 7 days',lv:'7 dienas bezmaksas'},ghost:0},
+    {plan:{ru:'Бизнес',en:'Business',lv:'Business'},badge:null,amt:'18€',per:{ru:'/мес',en:'/mo',lv:'/mēn'},
+     desc:{ru:'Максимум возможностей. Ноль комиссии с каждого урока.',en:'Maximum features. Zero commission on every lesson.',lv:'Maksimālas iespējas. Nulle komisijas.'},
+     feats:[
+       {y:1,t:{ru:'Всё из тарифа Про',en:'Everything in Pro',lv:'Viss no Pro'}},
+       {y:1,t:{ru:'Комиссия 0% — полный заработок',en:'0% commission — keep everything',lv:'Komisija 0% — viss paliek tev'}},
+       {y:1,t:{ru:'Продвижение на главной странице',en:'Homepage promotion',lv:'Reklāma sākumlapā'}},
+       {y:1,t:{ru:'Приоритетная поддержка 24/7',en:'Priority support 24/7',lv:'Prioritārs atbalsts 24/7'}},
+       {y:1,t:{ru:'Полная аналитика и статистика',en:'Full analytics & statistics',lv:'Pilna analītika un statistika'}},
+     ],btn:{ru:'Связаться с нами',en:'Contact us',lv:'Sazināties'},ghost:1},
+  ];
+
+  document.getElementById('price-grid').innerHTML=plans.map(p=>
+    '<div class="p-card ani'+(p.badge?' feat':'')+'">'
+    +(p.badge?'<div class="p-badge">'+p.badge[lang]+'</div>':'')
+    +'<div class="p-plan">'+p.plan[lang]+'</div>'
+    +'<div class="p-amt">'+p.amt+'</div>'
+    +'<div class="p-per">'+p.per[lang]+'</div>'
+    +'<div class="p-desc">'+p.desc[lang]+'</div>'
+    +'<ul class="p-feats">'+p.feats.map(f=>'<li class="'+(f.y?'':'dim')+'"><span class="'+(f.y?'p-y':'p-n')+'">'+(f.y?'✓':'✕')+'</span>'+f.t[lang]+'</li>').join('')+'</ul>'
+    +'<button class="btn-plan '+(p.ghost?'btn-plan-o':'btn-plan-g')+'" onclick="go(\'auth\');switchTab(\'register\')">'
+    +p.btn[lang]+'</button></div>'
+  ).join('');
+
+  const hdrs=[{ru:'Старт',en:'Starter',lv:'Sākums'},{ru:'Про',en:'Pro',lv:'Pro'},{ru:'Бизнес',en:'Business',lv:'Business'}];
+  const rows=[
+    [{ru:'Профиль',en:'Profile',lv:'Profils'},['✓','✓','✓']],
+    [{ru:'Комиссия',en:'Commission',lv:'Komisija'},['12%','8%','0%']],
+    [{ru:'Приоритет в поиске',en:'Search priority',lv:'Prioritāte'},['—','✓','✓']],
+    [{ru:'Аналитика',en:'Analytics',lv:'Analītika'},['—','Базовая','Полная']],
+    [{ru:'Продвижение',en:'Promotion',lv:'Reklāma'},['—','—','✓']],
+  ];
+  document.getElementById('compare-tbl').innerHTML=
+    '<tr><th></th>'+hdrs.map(h=>'<th>'+h[lang]+'</th>').join('')+'</tr>'
+    +rows.map(function(row){var lbl=row[0];var vs=row[1];return'<tr><td>'+lbl[lang]+'</td>'+vs.map(function(v){return'<td class="'+(v==='✓'?'yes':v==='—'?'no':'')+'">'+v+'</td>';}).join('')+'</tr>';}).join('');
+
+  const faqs=[
+    [{ru:'Когда я получу деньги?',en:'When do I get paid?',lv:'Kad saņemu naudu?'},
+     {ru:'В течение 3–5 рабочих дней после урока через Stripe на ваш банковский счёт.',en:'Within 3–5 business days after the lesson, via Stripe to your bank account.',lv:'3–5 darba dienu laikā pēc nodarbības caur Stripe.'}],
+    [{ru:'Могу ли я сам устанавливать цену?',en:'Can I set my own price?',lv:'Vai varu pats noteikt cenu?'},
+     {ru:'Да, ты полностью контролируешь цену за урок и расписание. Nakla не вмешивается.',en:'Yes, you fully control your lesson price and schedule.',lv:'Jā, pilnīgi kontrolē cenu un grafiku.'}],
+    [{ru:'Зачем платить 18€ если можно работать бесплатно?',en:'Why pay 18€ if I can work for free?',lv:'Kāpēc maksāt 18€?'},
+     {ru:'На Бизнес-тарифе нет комиссии. Если вы проводите от 4 уроков в месяц по 15€ — вы уже в плюсе. При 20 уроках экономия составит 54€.',en:'Business plan has 0% commission. If you teach 4+ lessons/month at 15€ you are already saving. At 20 lessons you save 54€.',lv:'Business plānā nav komisijas. Pie 4+ nodarbībām jau ietaupāt.'}],
+    [{ru:'Можно ли отменить подписку?',en:'Can I cancel my subscription?',lv:'Vai var atcelt abonementu?'},
+     {ru:'Да, в любой момент без штрафов. Отмена через настройки профиля.',en:'Yes, at any time with no penalties. Cancel through profile settings.',lv:'Jā, jebkurā laikā bez sodiem.'}],
+  ];
+  document.getElementById('faq-list').innerHTML=faqs.map(function(pair){
+    var q=pair[0]; var a=pair[1];
+    return '<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle(\'open\')">'
+      +q[lang]+'<span class="faq-arrow">+</span></div>'
+      +'<div class="faq-ans"><div class="faq-ans-in">'+a[lang]+'</div></div></div>';
+  }).join('');
+}
+
+
+// ══ AUTH ══
+let cRole=null;
+function switchTab(tab){
+  document.querySelectorAll('.auth-tab').forEach((b,i)=>b.classList.toggle('on',(i===0&&tab==='login')||(i===1&&tab==='register')));
+  document.getElementById('f-login').style.display=tab==='login'?'block':'none';
+  document.getElementById('f-register').style.display=tab==='register'?'block':'none';
+  document.getElementById('f-success').style.display='none';
+  document.getElementById('auth-tabs-el').style.display='flex';
+  if(tab==='register') goStep(1);
+}
+function pickRole(r){
+  cRole=r;
+  document.getElementById('rc-s').classList.toggle('on',r==='student');
+  document.getElementById('rc-t').classList.toggle('on',r==='tutor');
+  document.getElementById('btn-s1').disabled=false;
+  document.getElementById('tutor-ex').style.display=r==='tutor'?'block':'none';
+}
+function goStep(s){
+  if(s===3){
+    const n=document.getElementById('rn').value.trim(), sn=document.getElementById('rsn').value.trim(), em=document.getElementById('rem').value.trim();
+    let ok=true;
+    if(!n){se('rn-e','rn');ok=false;}else ce('rn-e','rn');
+    if(!sn){se('rsn-e','rsn');ok=false;}else ce('rsn-e','rsn');
+    if(!em||!em.includes('@')){se('rem-e','rem');ok=false;}else ce('rem-e','rem');
+    if(!ok)return;
+  }
+  [1,2,3].forEach(i=>{const el=document.getElementById('rs'+i);if(el)el.style.display=i===s?'block':'none';});
+  [1,2,3].forEach(i=>{const d=document.getElementById('sd'+i);d.className='s-dot'+(i<s?' done':i===s?' act':'');d.textContent=i<s?'✓':i;});
+  [1,2].forEach(i=>{document.getElementById('sl'+i).className='s-line'+(i<s?' done':'');});
+}
+function se(eid,iid){document.getElementById(eid).classList.add('show');document.getElementById(iid).classList.add('err');}
+function ce(eid,iid){document.getElementById(eid).classList.remove('show');document.getElementById(iid).classList.remove('err');}
+function tpw(id,btn){const i=document.getElementById(id);i.type=i.type==='password'?'text':'password';btn.textContent=i.type==='password'?'👁':'🙈';}
+function chkPw(pw){
+  let s=0;if(pw.length>=8)s++;if(/[A-Z]/.test(pw))s++;if(/[0-9]/.test(pw))s++;if(/[^A-Za-z0-9]/.test(pw))s++;
+  const cls=['','weak','med','str','str'];
+  [1,2,3,4].forEach((b,i)=>{document.getElementById('pb'+b).className='pw-bar'+(i<s?' '+cls[s]:'');});
+  const lbls={ru:['Введи пароль','Слабый','Средний','Хороший','Надёжный'],lv:['Ievadi','Vājš','Vidējs','Labs','Drošs'],en:['Enter password','Weak','Medium','Good','Strong']};
+  document.getElementById('pw-hint').textContent=pw?lbls[lang][s]:lbls[lang][0];
+}
+function spin(id,on){const b=document.getElementById(id);on?b.classList.add('loading'):b.classList.remove('loading');b.disabled=on;}
+function doLogin(){
+  const em=document.getElementById('li-em').value.trim(), pw=document.getElementById('li-pw').value;
+  let ok=true;
+  ce('li-em-e','li-em');ce('li-pw-e','li-pw');
+  if(!em||!em.includes('@')){se('li-em-e','li-em');ok=false;}
+  if(pw.length<6){se('li-pw-e','li-pw');ok=false;}
+  if(!ok)return;
+  spin('btn-login',true);
+  setTimeout(()=>{spin('btn-login',false);showSuc(false);},1200);
+}
+function doRegister(){
+  const pw=document.getElementById('rpw').value, pw2=document.getElementById('rpw2').value, ag=document.getElementById('agree').checked;
+  let ok=true;
+  ce('rpw-e','rpw');ce('rpw2-e','rpw2');
+  if(pw.length<8){se('rpw-e','rpw');ok=false;}
+  if(pw!==pw2){se('rpw2-e','rpw2');ok=false;}
+  if(!ag){alert(T[lang].agree_lbl.replace(/<[^>]*>/g,''));ok=false;}
+  if(!ok)return;
+  spin('btn-reg',true);
+  setTimeout(()=>{spin('btn-reg',false);showSuc(cRole==='tutor');},1400);
+}
+function showSuc(isTutor){
+  document.getElementById('f-login').style.display='none';
+  document.getElementById('f-register').style.display='none';
+  document.getElementById('auth-tabs-el').style.display='none';
+  document.getElementById('f-success').style.display='block';
+  document.getElementById('suc-h').textContent=isTutor?{ru:'Профиль репетитора создан! 🎉',lv:'Profils izveidots! 🎉',en:'Tutor profile created! 🎉'}[lang]:{ru:'Добро пожаловать в Nakla! 🎓',lv:'Laipni lūdzam Nakla! 🎓',en:'Welcome to Nakla! 🎓'}[lang];
+  document.getElementById('suc-s').textContent=isTutor?{ru:'Твой профиль готов. Ученики уже могут тебя найти.',lv:'Tavs profils ir gatavs. Skolēni var tevi atrast.',en:'Your profile is ready. Students can now find you.'}[lang]:{ru:'Аккаунт создан. Найди своего репетитора!',lv:'Konts izveidots. Atrodi savu skolotāju!',en:'Account created. Find your perfect tutor!'}[lang];
+}
+function doForgot(){
+  const em=document.getElementById('forg-em').value.trim();
+  if(!em||!em.includes('@')){document.getElementById('forg-e').classList.add('show');return;}
+  document.getElementById('forg-e').classList.remove('show');
+  spin('btn-forg',true);
+  setTimeout(()=>{spin('btn-forg',false);document.getElementById('btn-forg').style.display='none';document.getElementById('forg-ok').style.display='block';},1200);
+}
+function doContact(){
+  spin('btn-cnt',true);
+  setTimeout(()=>{spin('btn-cnt',false);document.getElementById('btn-cnt').style.display='none';document.getElementById('cnt-ok').style.display='block';},1000);
+}
+
+
+// ══ PROFILE PAGE ══
+const TUTORS_DATA=[
+  {id:0,av:'АК',bg:'linear-gradient(135deg,#3DDB82,#2cb96a)',name:'Anna Kalniņa',plan:'pro',
+   spec:{ru:'Математика · Физика',en:'Mathematics · Physics',lv:'Matemātika · Fizika'},
+   exp:{ru:'8 лет опыта',en:'8 years',lv:'8 gadi'},price:15,rating:4.9,reviews_cnt:47,
+   loc:{ru:'Рига, онлайн по всей Балтии',en:'Riga, online across Baltics',lv:'Rīga, tiešsaistē visā Baltijā'},
+   resp:{ru:'отвечает за 1 час',en:'replies within 1h',lv:'atbild 1h laikā'},
+   langs:'LV · RU',format:{ru:'Онлайн + Офлайн',en:'Online + In-person',lv:'Tiešsaistē + Klātienē'},
+   lessons_done:142,
+   tags:[['tag-blue','s_math'],['tag-pink','s_phys'],['tag-yel','LV'],['tag-cyan','s_ru']],
+   about:{ru:'Опытный репетитор по математике и физике. Работаю со школьниками 7–12 классов, готовлю к централизованным экзаменам и олимпиадам. Каждый ученик получает индивидуальный план занятий. Онлайн через Zoom, офлайн в Риге и Юрмале.',
+          en:'Experienced maths and physics tutor. Work with grades 7–12, preparing for centralised exams and olympiads. Every student gets an individual learning plan. Online via Zoom, in-person in Riga and Jūrmala.',
+          lv:'Pieredzējusi matemātikas un fizikas skolotāja. Strādāju ar 7.–12. klases skolēniem, gatavošanās centralizētajiem eksāmeniem un olimpiādēm.'},
+   teaches:{ru:[{sub:'Математика 7–12 кл.',topics:'Алгебра, геометрия, матанализ, ЦЭ'},{sub:'Физика 8–12 кл.',topics:'Механика, термодинамика, электродинамика, ЦЭ'}],
+            en:[{sub:'Mathematics gr. 7–12',topics:'Algebra, geometry, calculus, exam prep'},{sub:'Physics gr. 8–12',topics:'Mechanics, thermodynamics, electrodynamics'}],
+            lv:[{sub:'Matemātika 7.–12. kl.',topics:'Algebra, ģeometrija, analīze, CIE'},{sub:'Fizika 8.–12. kl.',topics:'Mehānika, termodinamika, elektrodinamika'}]},
+   reviews:[
+     {name:'Екатерина М.',av:'ЕМ',stars:5,date:{ru:'март 2026',en:'March 2026',lv:'Marts 2026'},text:{ru:'Анна потрясающий репетитор! Сдала ЦЭ по математике на 87 баллов. Спасибо огромное!',en:'Anna is an amazing tutor! I scored 87 on my maths exam. Thank you so much!',lv:'Anna ir lieliska skolotāja! Nokārtoju matemātikas CIE ar 87 punktiem.'}},
+     {name:'Максим Л.',av:'МЛ',stars:5,date:{ru:'февраль 2026',en:'Feb 2026',lv:'Februāris 2026'},text:{ru:'Очень доступно объясняет сложные темы. Уже вижу прогресс за месяц.',en:'Explains complex topics very accessibly. Already see progress after one month.',lv:'Skaidro sarežģītas tēmas ļoti saprotami. Jau pēc mēneša redzu progresu.'}},
+     {name:'Диана Р.',av:'ДР',stars:4,date:{ru:'январь 2026',en:'Jan 2026',lv:'Janvāris 2026'},text:{ru:'Хороший репетитор, объясняет понятно. Иногда уроки немного затягиваются.',en:'Good tutor, explains clearly. Sometimes lessons run a bit over time.',lv:'Labs skolotājs, skaidro saprotami. Dažreiz nodarbības nedaudz iestiepjas.'}},
+   ]},
+];
+
+let currentProfileId=0;
+let miniCalDate=new Date();
+
+function openProfile(id){
+  currentProfileId=id;
+  const d=TUTORS_DATA[id]||TUTORS_DATA[0];
+  const t=T[lang];
+  // avatar
+  const avEl=document.getElementById('prof-av');
+  avEl.style.background=d.bg;
+  avEl.childNodes[0].textContent=d.av;
+  document.getElementById('prof-name').textContent=d.name;
+  // plan badge
+  const planLabels={free:{ru:'Базовый',en:'Free',lv:'Pamata'},pro:{ru:'Про',en:'Pro',lv:'Pro'},biz:{ru:'Бизнес',en:'Business',lv:'Business'}};
+  const planClasses={free:'plan-free',pro:'plan-pro',biz:'plan-biz'};
+  const planDotContent={free:'',pro:'★',biz:'👑'};
+  const badgeEl=document.getElementById('prof-plan-badge');
+  const dotEl=document.getElementById('prof-plan-dot');
+  badgeEl.textContent=planLabels[d.plan][lang];
+  badgeEl.className='plan-badge '+(planClasses[d.plan]||'plan-free');
+  dotEl.textContent=planDotContent[d.plan];
+  dotEl.className='plan-dot '+(planClasses[d.plan]||'plan-free');
+  document.getElementById('prof-spec').textContent=d.spec[lang]+' · '+d.exp[lang];
+  document.getElementById('prof-rating').textContent=d.rating;
+  document.getElementById('prof-reviews').textContent='('+d.reviews_cnt+' '+(lang==='ru'?'отзывов':lang==='lv'?'atsauksmes':'reviews')+')';
+  document.getElementById('prof-loc').textContent=d.loc[lang];
+  document.getElementById('prof-resp').textContent=d.resp[lang];
+  document.getElementById('prof-price').textContent=d.price+'€';
+  document.getElementById('prof-about').textContent=d.about[lang];
+  document.getElementById('prof-cnt').textContent=d.lessons_done;
+  document.getElementById('prof-lang-v').textContent=d.langs;
+  document.getElementById('prof-format-v').textContent=d.format[lang];
+  // tags
+  const tagMap={s_math:t.s_math,s_phys:t.s_phys,s_en:t.s_en,s_lv:t.s_lv,s_chem:t.s_chem,s_prog:t.s_prog,s_ru:t.s_ru||'Русский',LV:'Latviski',EN:'English'};
+  document.getElementById('prof-tags').innerHTML=d.tags.map(([c,k])=>`<span class="tag ${c}">${tagMap[k]||k}</span>`).join('');
+  // teaches
+  document.getElementById('prof-teaches-list').innerHTML=d.teaches[lang].map(it=>`<div style="background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:14px;"><div style="font-size:14px;font-weight:700;margin-bottom:5px;">${it.sub}</div><div style="font-size:13px;color:var(--muted);">${it.topics}</div></div>`).join('');
+  // reviews
+  document.getElementById('prof-reviews-list').innerHTML=d.reviews.map(r=>`<div class="review-item"><div class="review-top"><div class="review-av">${r.av}</div><div><div class="review-name">${r.name}</div><div class="review-date">${r.date[lang]}</div></div><div class="review-stars">${'★'.repeat(r.stars)}${'☆'.repeat(5-r.stars)}</div></div><div class="review-text">${r.text[lang]}</div></div>`).join('');
+  // mini calendar
+  miniCalDate=new Date();
+  renderMiniCal();
+  go('profile');
+}
+
+function renderMiniCal(){
+  const months={ru:['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'],en:['January','February','March','April','May','June','July','August','September','October','November','December'],lv:['Janvāris','Februāris','Marts','Aprīlis','Maijs','Jūnijs','Jūlijs','Augusts','Septembris','Oktobris','Novembris','Decembris']};
+  const weekdays={ru:['Пн','Вт','Ср','Чт','Пт','Сб','Вс'],en:['Mo','Tu','We','Th','Fr','Sa','Su'],lv:['Pr','Ot','Tr','Ce','Pk','Se','Sv']};
+  const y=miniCalDate.getFullYear(), m=miniCalDate.getMonth();
+  document.getElementById('mini-cal-month').textContent=months[lang][m]+' '+y;
+  const firstDay=(new Date(y,m,1).getDay()+6)%7;
+  const daysInMonth=new Date(y,m+1,0).getDate();
+  const today=new Date();
+  // free slots (fake data)
+  const freeSlots=[3,7,10,14,17,21,24,28];
+  let html='';
+  // headers
+  weekdays[lang].forEach(d=>html+=`<div class="mini-cal-day-hdr">${d}</div>`);
+  for(let i=0;i<firstDay;i++) html+=`<button class="cal-day empty"></button>`;
+  for(let d=1;d<=daysInMonth;d++){
+    const isToday=d===today.getDate()&&m===today.getMonth()&&y===today.getFullYear();
+    const isFree=freeSlots.includes(d);
+    const isPast=new Date(y,m,d)<today&&!isToday;
+    html+=`<button class="cal-day${isToday?' today':isFree?' has-lesson':isPast?' past':''}">${d}</button>`;
+  }
+  document.getElementById('mini-cal-grid').innerHTML=html;
+}
+function miniCalNav(dir){miniCalDate=new Date(miniCalDate.getFullYear(),miniCalDate.getMonth()+dir,1);renderMiniCal();}
+
+// ══ CALENDAR PAGE ══
+let calDate=new Date();
+let calView='month';
+const LESSONS=[
+  {date:new Date(2026,5,18),time:'10:00',student:'Ekaterina M.',subj:{ru:'Математика',en:'Maths',lv:'Matemātika'},price:15,cls:'cal-ev-green'},
+  {date:new Date(2026,5,19),time:'14:00',student:'Maxim L.',subj:{ru:'Физика',en:'Physics',lv:'Fizika'},price:15,cls:'cal-ev-blue'},
+  {date:new Date(2026,5,21),time:'11:00',student:'Diana R.',subj:{ru:'Математика',en:'Maths',lv:'Matemātika'},price:15,cls:'cal-ev-green'},
+  {date:new Date(2026,5,23),time:'15:00',student:'Sofia K.',subj:{ru:'Физика',en:'Physics',lv:'Fizika'},price:15,cls:'cal-ev-blue'},
+  {date:new Date(2026,5,25),time:'10:00',student:'Alexei V.',subj:{ru:'Математика',en:'Maths',lv:'Matemātika'},price:15,cls:'cal-ev-green'},
+  {date:new Date(2026,5,28),time:'13:00',student:'Marta S.',subj:{ru:'Математика',en:'Maths',lv:'Matemātika'},price:15,cls:'cal-ev-green'},
+];
+function setCalView(v){calView=v;document.querySelectorAll('.cal-view-btn').forEach((b,i)=>b.classList.toggle('on',(i===0&&v==='month')||(i===1&&v==='week')));renderCal();}
+function calNav(dir){calDate=new Date(calDate.getFullYear(),calDate.getMonth()+dir,1);renderCal();}
+function renderCal(){
+  const months={ru:['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'],en:['January','February','March','April','May','June','July','August','September','October','November','December'],lv:['Janvāris','Februāris','Marts','Aprīlis','Maijs','Jūnijs','Jūlijs','Augusts','Septembris','Oktobris','Novembris','Decembris']};
+  const y=calDate.getFullYear(), m=calDate.getMonth();
+  document.getElementById('cal-main-month').textContent=months[lang][m]+' '+y;
+  const firstDay=(new Date(y,m,1).getDay()+6)%7;
+  const daysInMonth=new Date(y,m+1,0).getDate();
+  const prevDays=new Date(y,m,0).getDate();
+  const today=new Date();
+  let html='';
+  // prev month days
+  for(let i=firstDay-1;i>=0;i--) html+=`<div class="cal-cell other-month"><div class="cal-cell-num">${prevDays-i}</div></div>`;
+  // current month
+  for(let d=1;d<=daysInMonth;d++){
+    const isToday=d===today.getDate()&&m===today.getMonth()&&y===today.getFullYear();
+    const dayLessons=LESSONS.filter(l=>l.date.getDate()===d&&l.date.getMonth()===m&&l.date.getFullYear()===y);
+    const evHTML=dayLessons.map(l=>`<div class="cal-event ${l.cls}" onclick="event.stopPropagation()">${l.time} ${l.student.split(' ')[0]}</div>`).join('');
+    html+=`<div class="cal-cell${isToday?' is-today':''}"><div class="cal-cell-num">${d}</div>${evHTML}</div>`;
+  }
+  // next month fill
+  const total=Math.ceil((firstDay+daysInMonth)/7)*7;
+  for(let d=1;d<=total-firstDay-daysInMonth;d++) html+=`<div class="cal-cell other-month"><div class="cal-cell-num">${d}</div></div>`;
+  document.getElementById('cal-grid').innerHTML=html;
+  // upcoming
+  const today2=new Date();
+  const upcoming=LESSONS.filter(l=>l.date>=today2).sort((a,b)=>a.date-b.date).slice(0,4);
+  const dayNames={ru:['Вс','Пн','Вт','Ср','Чт','Пт','Сб'],en:['Su','Mo','Tu','We','Th','Fr','Sa'],lv:['Sv','Pr','Ot','Tr','Ce','Pk','Se']};
+  document.getElementById('cal-up-list').innerHTML=upcoming.map(l=>`<div class="cal-lesson-card"><div class="cal-lc-date">${dayNames[lang][l.date.getDay()]} ${l.date.getDate()}.${String(l.date.getMonth()+1).padStart(2,'0')}</div><div class="cal-lc-name">${l.student}</div><div class="cal-lc-sub">${l.subj[lang]}</div><div class="cal-lc-time">🕐 ${l.time} · 14€</div></div>`).join('');
+  // stats
+  const thisMonth=LESSONS.filter(l=>l.date.getMonth()===today2.getMonth());
+  document.getElementById('cal-stat-cnt').textContent=thisMonth.length;
+  document.getElementById('cal-stat-earn').textContent=(thisMonth.reduce((a,l)=>a+l.price,0)*0.88).toFixed(0)+'€';
+}
+
+// ══ MESSAGES ══
+const CONVS=[
+  {id:0,av:'ЕМ',bg:'linear-gradient(135deg,#ff78aa,#d04080)',name:'Ekaterina M.',online:true,unread:2,
+   last:{ru:'Можно перенести урок на пятницу?',en:'Can we move the lesson to Friday?',lv:'Vai varam pārcelt nodarbību uz piektdienu?'},time:'14:32',
+   msgs:[
+     {me:false,text:{ru:'Здравствуйте! Хотела бы начать готовиться к ЦЭ по математике.',en:'Hello! I would like to start preparing for my maths exam.',lv:'Sveiki! Gribu sākt gatavoties matemātikas eksāmenam.'},time:'10:15'},
+     {me:true,text:{ru:'Здравствуйте, Екатерина! Отлично, давайте обсудим ваш уровень. Какой класс и когда экзамен?',en:'Hi Ekaterina! Great, let us discuss your level. What grade are you in and when is the exam?',lv:'Sveika, Ekaterina! Lieliski, apspriedīsim jūsu līmeni. Kurā klasē un kad ir eksāmens?'},time:'10:22'},
+     {me:false,text:{ru:'11 класс, экзамен в мае 2027. Сейчас понимаю примерно на 60%.',en:'Grade 11, exam in May 2027. Currently understanding about 60%.',lv:'11. klase, eksāmens 2027. gada maijā. Šobrīd saprotu apmēram 60%.'},time:'10:45'},
+     {me:true,text:{ru:'Хорошо! Предлагаю начать с аудита пробелов — разберём, что именно западает. Когда вам удобно?',en:'Great! I suggest starting with a gap audit to find exactly what needs work. When works for you?',lv:'Labi! Ierosinu sākt ar nepilnību auditu. Kad jums ērti?'},time:'11:00'},
+     {me:false,text:{ru:'Можно перенести урок на пятницу?',en:'Can we move the lesson to Friday?',lv:'Vai varam pārcelt nodarbību uz piektdienu?'},time:'14:32'},
+   ]},
+  {id:1,av:'МЛ',bg:'linear-gradient(135deg,#78aaff,#4470dd)',name:'Maxim L.',online:false,unread:0,
+   last:{ru:'Спасибо за урок!',en:'Thank you for the lesson!',lv:'Paldies par nodarbību!'},time:'вчера',
+   msgs:[
+     {me:false,text:{ru:'Добрый день! Интересует физика, особенно механика.',en:'Good day! I am interested in physics, especially mechanics.',lv:'Labdien! Interesē fizika, īpaši mehānika.'},time:'09:00'},
+     {me:true,text:{ru:'Привет! Механика — отличная тема. Что именно вызывает затруднения?',en:'Hi! Mechanics is a great topic. What specifically gives you trouble?',lv:'Sveiki! Mehānika ir lieliska tēma. Kas konkrēti sagādā grūtības?'},time:'09:15'},
+     {me:false,text:{ru:'Спасибо за урок!',en:'Thank you for the lesson!',lv:'Paldies par nodarbību!'},time:'вчера'},
+   ]},
+  {id:2,av:'ДР',bg:'linear-gradient(135deg,#ffa878,#e06030)',name:'Diana R.',online:true,unread:0,
+   last:{ru:'Увидимся в среду!',en:'See you Wednesday!',lv:'Tiksimies trešdienā!'},time:'пн',
+   msgs:[
+     {me:false,text:{ru:'Увидимся в среду!',en:'See you Wednesday!',lv:'Tiksimies trešdienā!'},time:'пн'},
+   ]},
+];
+
+let activeConv=null;
+function buildMsgList(){
+  const t=T[lang];
+  document.getElementById('msg-list').innerHTML=CONVS.map(c=>`
+    <div class="msg-conv${activeConv===c.id?' active':''}" onclick="openConv(${c.id})">
+      <div class="msg-conv-av" style="background:${c.bg}">${c.av}${c.online?'<span class="msg-conv-online"></span>':''}</div>
+      <div style="flex:1;min-width:0;">
+        <div class="msg-conv-name">${c.name}</div>
+        <div class="msg-conv-last">${c.last[lang]}</div>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px;">
+        <div class="msg-conv-time">${c.time}</div>
+        ${c.unread?`<div class="msg-unread">${c.unread}</div>`:''}
+      </div>
+    </div>`).join('');
+}
+
+function openConv(id){
+  activeConv=id;
+  const c=CONVS[id];
+  c.unread=0;
+  buildMsgList();
+  const t=T[lang];
+  const onlineTxt={ru:c.online?'онлайн':'был недавно',en:c.online?'online':'seen recently',lv:c.online?'tiešsaistē':'nesen redzēts'};
+  document.getElementById('msg-main').innerHTML=`
+    <div class="msg-main-hdr">
+      <div class="msg-main-av" style="background:${c.bg}">${c.av}</div>
+      <div><div class="msg-main-name">${c.name}</div><div class="msg-main-sub">${onlineTxt[lang]}</div></div>
+      <div class="msg-main-actions">
+        <button class="msg-action-btn" onclick="openProfile(0)" data-i18n="btn_view_profile"></button>
+        <button class="msg-action-btn" onclick="go('calendar')" data-i18n="btn_book_lesson"></button>
+      </div>
+    </div>
+    <div class="msg-messages" id="msg-messages">${renderMsgs(c.msgs)}</div>
+    <div class="msg-input-bar">
+      <textarea class="msg-textarea" id="msg-inp" rows="1" placeholder="${t.msg_ph||'Напиши сообщение...'}" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendMsg(${id});}"></textarea>
+      <button class="btn-msg-send" onclick="sendMsg(${id})">↑</button>
+    </div>`;
+  // apply i18n to newly created buttons
+  document.querySelectorAll('#msg-main [data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n');if(T[lang][k])el.innerHTML=T[lang][k];});
+  const msgs=document.getElementById('msg-messages');
+  if(msgs) msgs.scrollTop=msgs.scrollHeight;
+}
+
+function renderMsgs(msgs){
+  let html='<div class="msg-date-divider">Сегодня</div>';
+  msgs.forEach(m=>{
+    html+=`<div class="msg-group ${m.me?'me':'them'}"><div class="msg-bubble">${m.text[lang]}</div><div class="msg-time">${m.time}</div></div>`;
+  });
+  return html;
+}
+
+function sendMsg(convId){
+  const inp=document.getElementById('msg-inp');
+  const text=inp.value.trim();
+  if(!text) return;
+  CONVS[convId].msgs.push({me:true,text:{ru:text,en:text,lv:text},time:new Date().toLocaleTimeString('ru',{hour:'2-digit',minute:'2-digit'})});
+  CONVS[convId].last={ru:text,en:text,lv:text};
+  inp.value='';
+  const msgs=document.getElementById('msg-messages');
+  msgs.innerHTML=renderMsgs(CONVS[convId].msgs);
+  msgs.scrollTop=msgs.scrollHeight;
+  buildMsgList();
+}
+
+// ══ PATCH ROUTING ══
+
+function go(name){
+  _goBase(name);
+  if(name==='calendar') renderCal();
+  if(name==='messages'){buildMsgList();}
+  if(name==='profile'){renderMiniCal();}
+}
+
+// ══ PATCH TUTOR CARDS to open profile ══
+function buildTutorsWithProfile(){
+  buildTutors();
+  // override click on trow to open profile
+  setTimeout(()=>{
+    document.querySelectorAll('.trow').forEach((row,i)=>{
+      row.onclick=()=>openProfile(Math.min(i,TUTORS_DATA.length-1));
+    });
+    document.querySelectorAll('.tc').forEach((card,i)=>{
+      card.onclick=()=>openProfile(0);
+    });
+  },50);
+}
+
+// ══ ADDITIONAL i18n KEYS ══
+Object.keys(T).forEach(l=>{
+  const extra={
+    ru:{back_to_find:'Назад к поиску',btn_msg_tutor:'Написать',btn_view_profile:'Профиль',btn_book_lesson:'Забронировать',prof_about:'О репетиторе',prof_teaches:'Что преподаёт',prof_reviews_ttl:'Отзывы учеников',prof_info:'Информация',prof_lessons_done:'Проведено уроков',prof_lang:'Языки обучения',prof_format:'Формат занятий',cal_eye:'Расписание',cal_title:'Мой календарь',cal_month:'Месяц',cal_week:'Неделя',cal_add_lesson:'+ Добавить урок',cal_upcoming:'Ближайшие уроки',cal_stats:'Статистика',cal_this_month:'В этом месяце',cal_earned:'Заработано',cal_total:'Всего уроков',wd_mon:'Пн',wd_tue:'Вт',wd_wed:'Ср',wd_thu:'Чт',wd_fri:'Пт',wd_sat:'Сб',wd_sun:'Вс',msg_inbox:'Сообщения',msg_search_ph:'Поиск...',msg_select:'Выбери диалог слева',msg_ph:'Напиши сообщение...'},
+    en:{back_to_find:'Back to search',btn_msg_tutor:'Message',btn_view_profile:'Profile',btn_book_lesson:'Book lesson',prof_about:'About the tutor',prof_teaches:'What I teach',prof_reviews_ttl:'Student reviews',prof_info:'Details',prof_lessons_done:'Lessons completed',prof_lang:'Teaching languages',prof_format:'Lesson format',cal_eye:'Schedule',cal_title:'My Calendar',cal_month:'Month',cal_week:'Week',cal_add_lesson:'+ Add lesson',cal_upcoming:'Upcoming lessons',cal_stats:'Statistics',cal_this_month:'This month',cal_earned:'Earned',cal_total:'Total lessons',wd_mon:'Mo',wd_tue:'Tu',wd_wed:'We',wd_thu:'Th',wd_fri:'Fr',wd_sat:'Sa',wd_sun:'Su',msg_inbox:'Messages',msg_search_ph:'Search...',msg_select:'Select a conversation',msg_ph:'Write a message...'},
+    lv:{back_to_find:'Atpakaļ uz meklēšanu',btn_msg_tutor:'Rakstīt',btn_view_profile:'Profils',btn_book_lesson:'Rezervēt',prof_about:'Par skolotāju',prof_teaches:'Ko mācu',prof_reviews_ttl:'Skolēnu atsauksmes',prof_info:'Informācija',prof_lessons_done:'Nodarbību skaits',prof_lang:'Mācību valodas',prof_format:'Nodarbību formāts',cal_eye:'Grafiks',cal_title:'Mans kalendārs',cal_month:'Mēnesis',cal_week:'Nedēļa',cal_add_lesson:'+ Pievienot nodarbību',cal_upcoming:'Tuvākās nodarbības',cal_stats:'Statistika',cal_this_month:'Šomēnes',cal_earned:'Nopelnīts',cal_total:'Kopā nodarbības',wd_mon:'Pr',wd_tue:'Ot',wd_wed:'Tr',wd_thu:'Ce',wd_fri:'Pk',wd_sat:'Se',wd_sun:'Sv',msg_inbox:'Ziņojumi',msg_search_ph:'Meklēt...',msg_select:'Izvēlies sarunu',msg_ph:'Raksti ziņojumu...'},
+  };
+  Object.assign(T[l], extra[l]||{});
+});
+
+
+// ══ LESSON MODAL ══
+function addLesson(){
+  const modal = document.getElementById('modal-add-lesson');
+  modal.style.display='flex';
+  // set today as default date
+  const today = new Date();
+  const yyyy = today.getFullYear();
+  const mm = String(today.getMonth()+1).padStart(2,'0');
+  const dd = String(today.getDate()+1).padStart(2,'0');
+  document.getElementById('al-date').value = yyyy+'-'+mm+'-'+dd;
+  // apply i18n to modal
+  const t=T[lang];
+  document.querySelectorAll('#modal-add-lesson [data-i18n]').forEach(el=>{
+    const k=el.getAttribute('data-i18n');
+    if(t[k]!=null) el.innerHTML=t[k];
+  });
+  document.querySelectorAll('#modal-add-lesson [data-i18n-ph]').forEach(el=>{
+    const k=el.getAttribute('data-i18n-ph');
+    if(t[k]!=null) el.placeholder=t[k];
+  });
+  document.querySelectorAll('#modal-add-lesson select option[data-i18n]').forEach(el=>{
+    const k=el.getAttribute('data-i18n');
+    if(t[k]!=null) el.textContent=t[k];
+  });
+}
+function closeModal(){
+  document.getElementById('modal-add-lesson').style.display='none';
+}
+function saveLesson(){
+  const student = document.getElementById('al-student').value.trim();
+  const dateVal = document.getElementById('al-date').value;
+  const timeVal = document.getElementById('al-time').value;
+  const subjEl = document.getElementById('al-subj');
+  const subj = subjEl.options[subjEl.selectedIndex].textContent;
+  if(!student || !dateVal){return;}
+  const parts = dateVal.split('-');
+  const d = new Date(+parts[0], +parts[1]-1, +parts[2]);
+  const t=T[lang];
+  LESSONS.push({date:d, time:timeVal, student:student,
+    subj:{ru:subj,en:subj,lv:subj}, price:15, cls:'cal-ev-ora'});
+  closeModal();
+  renderCal();
+}
+// Close modal on backdrop click
+document.addEventListener('click', function(e){
+  const modal = document.getElementById('modal-add-lesson');
+  if(e.target===modal) closeModal();
+});
+
+// ══ INIT ══
+setLang('ru');
+cu();
+</script>
+</body>
+</html>
